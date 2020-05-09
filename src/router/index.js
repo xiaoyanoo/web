@@ -6,6 +6,7 @@ import UniverseList from '@/views/universe-list.vue'
 import Home from '@/views/home.vue'
 import BookCataLogue from '@/views/BookCataLogue'
 
+
 Vue.use(Router)
 
 export default new Router({
