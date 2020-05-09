@@ -3,7 +3,7 @@
     <Row class="nav">
         <Col span="20">
           <Row type="flex" justify="center" >
-            <Col span="3"><router-link to="/home">大说</router-link></Col>
+            <Col span="3"><router-link to="/">大说</router-link></Col>
             <Col span="3"><router-link to="/universe-list">宇宙</router-link></Col>
             <Col span="3"><router-link to="/BookCataLogue">作者</router-link></Col>
           </Row>
