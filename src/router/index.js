@@ -4,6 +4,7 @@ import BookReader from "../views/book-reader/book-reader.vue";
 import BookInfo from '@/views/book-info.vue'
 import UniverseList from '@/views/universe-list.vue'
 import Home from '@/views/home.vue'
+import BookCataLogue from '@/views/BookCataLogue.vue'
 
 Vue.use(Router)
 
@@ -18,7 +19,7 @@ export default new Router({
             component: Home
         },
         {
-            path: 'BookCataLogue',
+            path: '/BookCataLogue',
             name: 'BookCataLogue',
             component: BookCataLogue
         },
