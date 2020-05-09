@@ -10,23 +10,21 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
             path: '/',
+            name: 'Home',
+            component: Home
         },
         {
-            path: '/home',
-            name: 'home',
-            component: Home
+            path: '/BookReader',
+            name: 'BookReader',
+            component: BookReader
         },
         {
             path: '/BookCataLogue',
             name: 'BookCataLogue',
             component: BookCataLogue
-        },
-        {
-            path: "/book-reader",
-            name: "book-reader",
-            component: BookReader
         },
         {
             path: '/book-info',
