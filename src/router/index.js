@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import sec from '@/components/sec'
+import Home from '@/components/Home'
 import bookInfo from '@/components/bookInfo'
 import universeList from '@/components/universeList'
 
@@ -12,11 +12,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-        },
-        {
-            path: '/sec',
-            name: 'sec',
-            component: sec
+            name: 'Home',
+            component: Home
         },
         {
             path: '/hollow',
