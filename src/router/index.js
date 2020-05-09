@@ -18,6 +18,11 @@ export default new Router({
             component: Home
         },
         {
+            path: 'BookCataLogue',
+            name: 'BookCataLogue',
+            component: BookCataLogue
+        },
+        {
             path: "/book-reader",
             name: "book-reader",
             component: BookReader
