@@ -23,6 +23,7 @@
         <Row type="flex" justify="center">
             <Col span="20" class="bookListCon">
                 <div class="bookList">
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -44,6 +45,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -65,6 +67,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -86,6 +89,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -107,6 +111,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -128,6 +133,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -149,6 +155,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -170,6 +177,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -191,6 +199,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -212,6 +221,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -233,6 +243,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -254,6 +265,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -275,6 +287,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -296,6 +309,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -317,6 +331,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -338,6 +353,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="bookItem" @click="tss">
                         <img src="@/assets/book.jpg" alt="">
                         <div class="bookInfo">
@@ -359,6 +375,7 @@
                             </p>
                         </div>
                     </div>
+
                 </div>
             </Col>
         </Row>

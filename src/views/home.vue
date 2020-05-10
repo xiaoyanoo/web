@@ -3,6 +3,7 @@
     <br>
     <br>
     <br>
+    <router-link to="/book_info" class="">   <!--  记得删除这个标签，仅供展示用！！！！  -->
     <div id="tablebox">
       <ul class="dashuo-list">
         <li>
@@ -87,6 +88,7 @@
         </li>
       </ul>
     </div>
+    </router-link>
     <br>
     <br>
     <br>
