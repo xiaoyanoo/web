@@ -6,6 +6,7 @@ import 'view-design/dist/styles/iview.css';
 import '@/fonts/font/iconfont.js';
 import '@/static/common.css'
 
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -6,6 +6,7 @@ import UniverseList from '@/views/universe-list.vue'
 import Home from '@/views/home.vue'
 import BookCataLogue from '@/views/BookCataLogue.vue'
 import Personone from '@/views/personone.vue'
+import universePage from '@/views/universePage'
 
 
 Vue.use(Router)
@@ -42,6 +43,11 @@ export default new Router({
             path: '/personone',
             name: 'personone',
             component: Personone
+        },
+        {
+            path: '/universePage',
+            name: 'universePage',
+            component: universePage
         }
     ]
 })

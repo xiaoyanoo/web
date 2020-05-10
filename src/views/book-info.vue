@@ -89,7 +89,7 @@ export default {
       position: absolute;
       color: red;
       right: 0;
-      top: -20px;
+      top: -42px;
       font-size: 16px;
     }
     .bookAuthor{
