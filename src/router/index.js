@@ -1,45 +1,53 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Home from '@/components/Home'
 import BookReader from "../views/book-reader/book-reader.vue";
-import bookInfo from '@/components/bookInfo'
-import universePage from '@/components/universePage'
-import universeList from '@/components/universeList'
+import BookInfo from '@/views/book-info.vue'
+import UniverseList from '@/views/universe-list.vue'
+import Home from '@/views/home.vue'
+import BookCataLogue from '@/views/BookCataLogue.vue'
+import Personone from '@/views/personone.vue'
+import universePage from '@/views/universePage'
+
 
 Vue.use(Router)
 
 export default new Router({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
             path: '/',
             name: 'Home',
             component: Home
         },
         {
-            path: '/hollow',
-            name: 'HelloWorld',
-            component: HelloWorld
-        },
-        {
-            path: "/book-reader",
-            name: "book-reader",
+            path: '/BookReader',
+            name: 'BookReader',
             component: BookReader
         },
         {
-            path: '/bookInfo',
-            name: 'bookInfo',
-            component: bookInfo
+            path: '/BookCataLogue',
+            name: 'BookCataLogue',
+            component: BookCataLogue
+        },
+        {
+            path: '/book-info',
+            name: 'book-info',
+            component: BookInfo
+        },
+        {
+            path: '/universe-list',
+            name: 'universe-list',
+            component: UniverseList
+        },
+        {
+            path: '/personone',
+            name: 'personone',
+            component: Personone
         },
         {
             path: '/universePage',
             name: 'universePage',
             component: universePage
-        },
-        {
-            path: '/universeList',
-            name: 'universeList',
-            component: universeList
         }
     ]
 })
