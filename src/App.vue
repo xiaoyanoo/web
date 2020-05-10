@@ -4,11 +4,11 @@
         <Col span="20">
           <Row type="flex" justify="center" >
             <Col span="3"><router-link to="/">大说</router-link></Col>
-            <Col span="3"><router-link to="/universe-list">宇宙</router-link></Col>
-            <Col span="3"><router-link to="/BookCataLogue">作者</router-link></Col>
+            <Col span="3"><router-link to="/universePage">宇宙</router-link></Col>
+            <Col span="3"><router-link to="/Personone">作者</router-link></Col>
           </Row>
         </Col>
-        <Col span="4"><router-link to="/hollow" class="">登录/注册</router-link></Col>
+        <Col span="4"><router-link to="/loadpage" class="">登录/注册</router-link></Col>
     </Row>
     <router-view></router-view>
   </div>

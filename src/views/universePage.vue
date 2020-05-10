@@ -7,7 +7,7 @@
                     <p class="univDes">{{item.univDes}}</p>
                 </div>
                 <div class="univImg">
-                    <img :src="item.univImg" alt="">
+                    <router-link to="/universe-list"><img :src="item.univImg" alt=""></router-link>
                     <p class="univName" :class="currentIndex == index?'hideCon':''">{{item.univName}}</p>
                 </div>
             </swiper-slide>
