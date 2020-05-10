@@ -7,7 +7,7 @@ import Home from '@/views/home.vue'
 import BookCataLogue from '@/views/BookCataLogue.vue'
 import Personone from '@/views/personone.vue'
 import universePage from '@/views/universePage'
-
+import loadpage from "@/views/loadpage";
 
 Vue.use(Router)
 
@@ -48,6 +48,11 @@ export default new Router({
             path: '/universePage',
             name: 'universePage',
             component: universePage
+        },
+        {
+            path: '/loadpage',
+            name: 'loadpage',
+            component: loadpage
         }
     ]
 })
