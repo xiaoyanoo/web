@@ -37,15 +37,34 @@
             <br>
             <br>
             <Row type="flex"  >
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe781;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe784;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe785;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe786;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe77e;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe77f;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe780;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe77c;</span><span class="c0 b f28">3126</span></Col>
-              <Col span="4"><span class="icon iconfont f28 cD1D vt">&#xe772;</span><span class="c0 b f28">3126</span></Col>
+              <Col span="5"><span class="icon iconfont f28 cD1D vt">&#xe6a0;</span><span class="c0 b f28">3120</span></Col>
+
+              <Col span="5">
+                <router-link to="/favorite" class="">
+                <span class="icon iconfont f28 cD1D vt">&#xe600;</span>
+                  <span class="c0 b f28">3121</span>
+                </router-link>
+              </Col>
+              <Col span="5">
+                <span class="icon iconfont f28 cD1D vt">&#xe71a;</span>
+                <span class="c0 b f28">3122</span>
+              </Col>
+              <Col span="5">
+                <span class="icon iconfont f28 cD1D vt">&#xe61b;</span>
+                <span class="c0 b f28">3123</span>
+              </Col>
+              <Col span="5">
+                <span class="icon iconfont f28 cD1D vt">&#xe615;</span>
+                <span class="c0 b f28">3124</span>
+              </Col>
+              <Col span="5">
+                <span class="icon iconfont f28 cD1D vt">&#xe617;</span>
+                <span class="c0 b f28">3126</span>
+              </Col>
+              <Col span="5">
+                <span class="icon iconfont f28 cD1D vt">&#xe6c3;</span>
+                <span class="c0 b f28">3127</span>
+              </Col>
             </Row>
             <div class="h180">&ensp;</div>
             <Row type="flex">
@@ -119,7 +138,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  @import "../fonts/font/iconfont.css";
+  @import "../fonts/font_2/iconfont.css";
 
   .person-left{float: left;
     height:1080px;
