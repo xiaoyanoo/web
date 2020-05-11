@@ -9,6 +9,7 @@ import universePage from '@/views/universePage'
 import loadpage from "@/views/loadpage";
 import book_info from "../views/book_info";
 import favorite from "../views/favorite";
+import write from "../views/write";
 // import book_info from "../views/book_info";
 
 Vue.use(Router)
@@ -20,6 +21,11 @@ export default new Router({
             path: '/',
             name: 'Home',
             component: Home
+        },
+        {
+          path: '/write',
+          name: 'write',
+          component: write
         },
         {
             path: '/favorite',
