@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="main">
-      <div class="left_part"><img src="@/assets/leftpic.png" alt="背景" width="140%"></div>
+      <div class="left_part"><img src="@/assets/leftpic.png" alt="背景" width="100%"></div>
       <div class="right_log" v-if="juice == 0">
         <div class="log_title" >
           <div></div>
@@ -9,14 +9,14 @@
           <div class="sign_up"><a @click="juice = 1"> >注册</a></div>
           <div></div>
         </div>
-        <div class="tips">账号或密码错误</div>
+        <div class="tips" v-if="!page_key">账号或密码错误</div>
         <form action="">
           <div class="log_operate">
             <div class="AccountNumber">账号</div>
-            <div class="username"><input class="username_text" type="text"></div>
+            <div class="username"><input v-model="userName_1" class="username_text" type="text"></div>
             <div class="passwd">密码</div>
-            <div class="pwd"><input type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
-            <div class='sub'><input type="submit" value="登录" style="background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;"></div>
+            <div class="pwd"><input v-model="password_1" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class='sub'><input type="submit" value="登录" @click="load_click_function" style="background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;"></div>
             <div class="forget_pwd" style="margin-top: 30px;margin-left: 140px;"><a @click="juice = 2" style="color: #787a7c;font-weight: 100;">忘记密码？</a></div>
           </div>
         </form>
@@ -33,10 +33,10 @@
         <form action="">
           <div class="log_operate" style="margin-left: 80px;margin-top: 30px;">
             <div style="color: #787a7c;font-size: 17px;margin-bottom: 10px;">账号</div>
-            <div class="username"><input type="text" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class="username"><input v-model="userName_2" type="text" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
             <div style="color: #787a7c;font-size: 17px;margin-top: 40px;margin-bottom: 10px;">密码</div>
-            <div class="pwd"><input type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
-            <div class='sub'><input type="submit" value="注册" style="background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;"></div>
+            <div class="pwd"><input v-model="password_2" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class='sub'><input type="submit" value="注册" @click="reg_click_function" style="background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;"></div>
           </div>
         </form>
       </div>
@@ -56,15 +56,69 @@
     name: "loadpage",
     data(){
       return {
+        page_key: true,
         juice: 0,  // 0-注册，1-登陆，2-忘记密码
+        userName_1:"",
+        password_1:"",
+        userName_2:"",
+        password_2:"",
+      }
+    },
+    mounted(){
+      this.$api.get('api/main/pub/login', {
+        topCount: 8
+      }, response =>{
+        if (response.status >= 200 && response.status < 300) {
+          console.log(response.data);
+        } else {
+          console.log(response.message);
+        }
+      })
+    },
+    methods:{
+      load_click_function(){
+        //这里写登陆逻辑，先做验证再写接口，接口写在这里面，
+         if(this.userName_1 && this.password_1){
+           this.$api.get('api/work/pub/login', {
+             "loginName": this.userName_1,
+             "password": this.password_1,
+             "rememberMe": true
+           }, response =>{
+             if (response.status >= 200 && response.status < 300) {
+               console.log(response.data);
+             } else {
+               this.page_key = !this.page_key;
+             }
+           })
+         }else{
+           this.page_key = !this.page_key;
+         }
+      },
+      reg_click_function(){
+        //这里写注册逻辑，先做验证再写接口，接口写在这里面，
+        if(this.userName_2 && this.password_2){
+          this.$api.get('api/work/pub/register', {
+            "headImage": this.userName_2,
+            "pseudonym": this.password_2,
+          }, response =>{
+            if (response.status >= 200 && response.status < 300) {
+              console.log(response.data);
+            } else {
+              this.page_key = !this.page_key;
+            }
+          })
+        }else{
+          this.page_key = !this.page_key;
+        }
       }
     }
   }
+
 </script>
 
 <style scoped>
   .sign_in{
-    display: inline;
+    /*display: inline;*/
     width:50px;
     height: 30px;
     padding-top: 10px;
