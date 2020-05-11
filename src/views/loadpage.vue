@@ -79,7 +79,7 @@
       load_click_function(){
         //这里写登陆逻辑，先做验证再写接口，接口写在这里面，
          if(this.userName_1 && this.password_1){
-           this.$api.get('api/work/pub/login', {
+           this.$api.get('api/main/pub/login', {
              "loginName": this.userName_1,
              "password": this.password_1,
              "rememberMe": true
@@ -97,7 +97,7 @@
       reg_click_function(){
         //这里写注册逻辑，先做验证再写接口，接口写在这里面，
         if(this.userName_2 && this.password_2){
-          this.$api.get('api/work/pub/register', {
+          this.$api.get('api/main/pub/register', {
             "headImage": this.userName_2,
             "pseudonym": this.password_2,
           }, response =>{
