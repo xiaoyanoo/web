@@ -7,12 +7,12 @@
             <p class="bookAuthor">作者</p>
             <p class="bookIntroduction">一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆老豆一人悲伤的老豆一人悲伤的老豆一人悲伤的老豆</p>
             <div class="bookLine">
-              <router-link class="bookMenu" to="/BookCataLogue">
+<!--              <router-link class="bookMenu" to="/BookCataLogue">-->
                 <svg class="icon" aria-hidden="true">
                   <use xlink:href="#icon-mulu"></use>
                 </svg>
                 <span>作品目录</span>
-              </router-link>
+<!--              </router-link>-->
               <router-link class="bookRead" to="/BookReader">
                 <span>开始阅读</span>
                 <svg class="icon" aria-hidden="true">

@@ -5,7 +5,7 @@
           <Row type="flex" justify="center" class="top">
             <Col span="3"><router-link to="/" class="font">大说</router-link></Col>
             <Col span="3"><router-link to="/universePage" class="font">宇宙</router-link></Col>
-            <Col span="3"><router-link to="/Personone" class="font">作者</router-link></Col>
+            <Col span="3"><router-link to="/loadpage" class="font">作者</router-link></Col>
           </Row>
         </Col>
         <Col span="4"><router-link to="/loadpage" class="load">登录/注册</router-link></Col>
