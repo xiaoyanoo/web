@@ -487,6 +487,16 @@ export default {
 
         eee2.preventDefault(); //阻止浏览器的默认滚动
     }
+
+    this.$api.get('api/main/pub/rank/collect/top', {
+      topCount: 8
+    }, response =>{
+      if (response.status >= 200 && response.status < 300) {
+        console.log(response.data);
+      } else {
+        console.log(response.message);
+      }
+    })
   }
 }
 </script>

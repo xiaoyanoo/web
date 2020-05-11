@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <Row class="nav">
+    <Row class="nav" v-if="nav == 1">
         <Col span="20">
-          <Row type="flex" justify="center" >
-            <Col span="3"><router-link to="/">大说</router-link></Col>
-            <Col span="3"><router-link to="/universePage">宇宙</router-link></Col>
-            <Col span="3"><router-link to="/Personone">作者</router-link></Col>
+          <Row type="flex" justify="center" class="top">
+            <Col span="3"><router-link to="/" class="font">大说</router-link></Col>
+            <Col span="3"><router-link to="/universePage" class="font">宇宙</router-link></Col>
+            <Col span="3"><router-link to="/Personone" class="font">作者</router-link></Col>
           </Row>
         </Col>
-        <Col span="4"><router-link to="/loadpage" class="">登录/注册</router-link></Col>
+        <Col span="4"><router-link to="/loadpage" class="load">登录/注册</router-link></Col>
     </Row>
     <router-view></router-view>
   </div>
@@ -22,6 +22,11 @@ export default {
   components: {
     Row,
     Col
+  },
+  computed: {
+    nav(){
+      return this.$store.state.nav;
+    }
   }
 }
 </script>
@@ -30,10 +35,17 @@ export default {
   #app{
     margin-top: 40px;
   }
+
+  .font{
+
+    font-size: 30px;
+    font-family:SimHei;
+    font-weight:bold;
+    color:white;
+  }
   .nav{
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
+
+    box-shadow:0px 10px 13px 3px rgba(51,51,51,0.1);
     a{
       color: #000;
       padding-bottom: 6px;

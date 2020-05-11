@@ -35,6 +35,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  dev:{
+
+  },
   // 模块
   module: {
     rules: [
