@@ -20,12 +20,14 @@
           <Col span="3"></Col>
         </Row>
         <br>
+        <router-link to="/Home">
         <Row type="flex"  class="person-left-bottom">
           <Col span="2"><br></Col>
           <Col span="5"><a href="#"><span class="icon iconfont f24">&#xe77b;</span></a></Col>
           <Col span="4"><span class="f18">退出</span></Col>
           <Col span="3"></Col>
         </Row>
+        </router-link>
       </Col>
       <Col span="20" class="person-right">
         <br>
@@ -70,6 +72,7 @@
             <Row type="flex">
               <Col span="8"><br></Col>
               <Col span="8">
+                <router-link to="/write">
                 <div class="person-info">
                   <div class="person-info-img">
                     <img src="@/assets/book.jpg">
@@ -97,7 +100,7 @@
                     </ul>
                   </div>
                 </div>
-
+                </router-link>
               </Col>
               <Col span="8"><br></Col>
             </Row>
@@ -117,6 +120,11 @@
     props: {
       msg: String
     },
+    data(){
+      return {
+
+      }
+    },
     components: {
       Row,
       Col,
@@ -129,8 +137,12 @@
         console.log(434);
       }
     },
+    computed: {
+      loginStatue(){
+        return this.$store.state.login;
+      }
+    },
     mounted() {
-
 
     }
   }

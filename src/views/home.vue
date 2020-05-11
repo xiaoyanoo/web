@@ -460,6 +460,12 @@ export default {
   props: {
     msg: String
   },
+  data(){
+    return {
+      univ_pai: [],
+      novel_pai: [],
+    }
+  },
   components: {
         Row,
         Col,
@@ -472,7 +478,13 @@ export default {
             console.log(434);
         }
     },
+    computed: {
+      userId(){
+        return this.$store.state.login; //userId
+      }
+    },
   mounted() {
+    //在用户看到界面之前执行
     var a = document.getElementById("tablebox");
     var scroll_width = 100; //滚动一下的距离
     if(document.addEventListener){
@@ -493,6 +505,8 @@ export default {
     }, response =>{
       if (response.status >= 200 && response.status < 300) {
         console.log(response.data);
+        this.univ_pai = response.data.univ_pai;
+        this.novel_pai = response.data.novel_pai;
       } else {
         console.log(response.message);
       }

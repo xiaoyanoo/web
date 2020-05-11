@@ -5,7 +5,11 @@
       <div class="h40">&ensp;</div>
       <div class="write-side-list">
         <ul>
-          <li><a href="#" class="active"><span class="icon iconfont f50">&#xe615;</span></a></li>
+          <li>
+            <router-link to="/personone">
+            <a href="#" class="active"><span class="icon iconfont f50">&#xe615;</span></a>
+            </router-link>
+          </li>
           <br>
           <li><a href="#" class=""><span class="icon iconfont f24">&#xe63f;</span></a></li>
           <br>
