@@ -20,7 +20,7 @@
           <Col span="3"></Col>
         </Row>
         <br>
-        <router-link to="/Home">
+        <router-link to="/">
         <Row type="flex"  class="person-left-bottom">
           <Col span="2"><br></Col>
           <Col span="5"><a href="#"><span class="icon iconfont f24">&#xe77b;</span></a></Col>

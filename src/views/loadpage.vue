@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div class="main">
-      <div class="left_part"><img src="@/assets/leftpic.png" alt="背景" width="100%"></div>
+      <div class="left_part"><img src="@/assets/leftpic.png" alt="背景"></div>
       <div class="right_log" v-if="juice == 0">
 
 
-        <div class="log_title" >
+        <div class="log_title">
           <div></div>
-          <div class="sign_in"><a @click="juice = 0">登录</a></div>
-          <div class="sign_up"><a @click="juice = 1"> >注册</a></div>
+          <div class="sign_in"><a @click="juice = 0,res_err = false">登录</a></div>
+          <div class="sign_up"><a @click="juice = 1">注册</a></div>
           <div></div>
         </div>
 
@@ -31,12 +31,13 @@
       </div>
 
       <div class="right_log" v-if="juice == 1">
-        <div class="log_title" style="width: 500px;height: 80px;text-align: center;display: flex;justify-content: space-around;">
+        <div class="log_title">
           <div></div>
-          <div class="sign_in" style="display: inline;width:50px;height: 30px;padding-top: 10px; font-size: 17px;"><a @click="juice = 0">登录</a></div>
-          <div class="sign_up" style="display: inline;width:50px;height: 30px;padding-top: 10px; border-bottom:5px solid black;font-size: 17px;"><a @click="juice = 1">注册</a></div>
+          <div class="sign_in"><a @click="juice = 0">登录</a></div>
+          <div class="sign_up"><a @click="juice = 1">注册</a></div>
           <div></div>
         </div>
+        <div class="tips" v-if="repassword_err" style="color: red;text-align: center;height: 20px;">两次密码不一直！</div>
         <div class="tips" v-if="res_err" style="color: red;text-align: center;height: 20px;">注册失败！</div>
         <div class="tips" v-if="information" style="color: red;text-align: center;height: 20px;">账号和密码只支持英文和数字字符</div>
         <div class="tips" v-if="res_true" style="color: red;text-align: center;height: 20px;">注册成功！</div>
@@ -44,8 +45,12 @@
           <div class="log_operate" style="margin-left: 80px;margin-top: 30px;">
             <div style="color: #787a7c;font-size: 17px;margin-bottom: 10px;">账号</div>
             <div class="username"><input v-model="userName_2" type="text" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+
             <div style="color: #787a7c;font-size: 17px;margin-top: 40px;margin-bottom: 10px;">密码</div>
             <div class="pwd"><input v-model="password_2" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+
+            <div style="color: #787a7c;font-size: 17px;margin-top: 40px;margin-bottom: 10px;">确认密码</div>
+            <div class="pwd"><input v-model="password_3" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
             <div class='sub'>
               <p @click="reg_click_function" style="line-height: 50px;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center">
               注册
@@ -72,12 +77,14 @@
     name: "loadpage",
     data(){
       return {
+        repassword_err: false,
         page_key: true,
         juice: 0,  // 0-注册，1-登陆，2-忘记密码
         userName_1:"",
         password_1:"",
         userName_2:"",
         password_2:"",
+        password_3:"",
         res_err: false,
         res_true: false,
         information: true,
@@ -87,7 +94,7 @@
 
 
     mounted(){
-      // this.$api.get('api/main/pub/login', {
+      // this.$api.post('api/main/pub/login', {
       //   topCount: 8
       // }, response =>{
       //   if (response.status >= 200 && response.status < 300) {
@@ -103,7 +110,7 @@
       load_click_function(){
         //这里写登陆逻辑，先做验证再写接口，接口写在这里面，
         if(this.userName_1 && this.password_1){
-          this.$api.get('api/work/pub/login', {
+          this.$api.post('api/work/pub/login', {
             "loginName": this.userName_1,
             "password": this.password_1,
             "rememberMe": true
@@ -127,21 +134,25 @@
 
       reg_click_function(){
         //这里写注册逻辑，先做验证再写接口，接口写在这里面，
-        if(this.userName_2 && this.password_2){
-          this.$api.get('api/work/pub/register', {
+        if(this.userName_2 && this.password_2 && this.password_3 === this.password_2){
+          this.$api.post('api/work/pub/register', {
             "headImage": this.userName_2,
             "pseudonym": this.password_2,
           }, response =>{
             if (response.status >= 200 && response.status < 300) {
-
+              this.repassword = false
               this.information = false;
               this.res_err = false;
               this.res_true = true;
 
             } else {
-
-              this.res_err = true;
-
+              // eslint-disable-next-line no-empty
+              if(this.password_3 !== this.password_2){
+                this.repassword_err = true
+                // eslint-disable-next-line no-empty
+              } else {
+                this.res_err = true
+              }
             }
           })
         }else{
@@ -157,9 +168,8 @@
     /*display: inline;*/
     width:50px;
     height: 30px;
-    padding-top: 10px;
-    border-bottom:5px solid black;
-    font-size: 17px;
+    padding-top: 5%;
+    font-size: 25px;
   }
   .log_title{
     width: 500px;
@@ -191,7 +201,7 @@
     padding-top: 30px;
   }
   .left_part{
-    margin-top:8%;
+    margin-top:12%;
     margin-left:8%;
   }
   .right_log{
@@ -234,8 +244,8 @@
     display: inline;
     width:50px;
     height: 30px;
-    padding-top: 10px;
-    font-size: 17px;
+    padding-top: 5%;
+    font-size: 25px;
   }
   .tips{
     color: red;

@@ -37,12 +37,12 @@ export default {
   }
 
   .font{
-
     font-size: 30px;
     font-family:SimHei;
     font-weight:bold;
     color:white;
   }
+
   .nav{
 
     box-shadow:0px 10px 13px 3px rgba(51,51,51,0.1);
