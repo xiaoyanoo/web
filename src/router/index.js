@@ -10,6 +10,7 @@ import loadpage from "@/views/loadpage";
 import book_info from "../views/book_info";
 import favorite from "../views/favorite";
 import write from "../views/write";
+// import Creatbook from "../views/creatbook";
 // import book_info from "../views/book_info";
 
 Vue.use(Router)
@@ -67,6 +68,11 @@ export default new Router({
             path: '/loadpage',
             name: 'loadpage',
             component: loadpage
-        }
+        },
+        // {
+        //     path: "/creatbook",
+        //     name: 'creatbook',
+        //     component: Creatbook
+        // }
     ]
 })

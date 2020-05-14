@@ -39,33 +39,28 @@
             <br>
             <br>
             <Row type="flex"  >
-              <Col span="5"><span class="icon iconfont f28 cD1D vt">&#xe6a0;</span><span class="c0 b f28">3120</span></Col>
+              <Col span="4">
+                <span class="icon iconfont f28 cD1D vt">&#xe6a0;</span>
+                <span class="c0 b f28">3120</span>
+              </Col>
 
-              <Col span="5">
+              <Col span="4">
                 <router-link to="/favorite" class="">
                 <span class="icon iconfont f28 cD1D vt">&#xe600;</span>
                   <span class="c0 b f28">3121</span>
                 </router-link>
               </Col>
-              <Col span="5">
+              <Col span="4">
                 <span class="icon iconfont f28 cD1D vt">&#xe71a;</span>
                 <span class="c0 b f28">3122</span>
               </Col>
-              <Col span="5">
-                <span class="icon iconfont f28 cD1D vt">&#xe61b;</span>
-                <span class="c0 b f28">3123</span>
-              </Col>
-              <Col span="5">
-                <span class="icon iconfont f28 cD1D vt">&#xe615;</span>
-                <span class="c0 b f28">3124</span>
-              </Col>
-              <Col span="5">
+              <Col span="4">
                 <span class="icon iconfont f28 cD1D vt">&#xe617;</span>
                 <span class="c0 b f28">3126</span>
               </Col>
-              <Col span="5">
+              <Col span="4">
                 <span class="icon iconfont f28 cD1D vt">&#xe6c3;</span>
-                <span class="c0 b f28">3127</span>
+                <span class="c0 b f28"><button>创建书籍~</button></span>
               </Col>
             </Row>
             <div class="h180">&ensp;</div>
@@ -86,18 +81,18 @@
                   <div class="h40">&ensp;</div>
                   <div class="person-read">
                     <p class="r"><span class="f14 c0">3126</span>&ensp;<span  class="f14 cB7B">人在看</span></p>
-                    <ul>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                      <li><img src="@/assets/book.jpg"></li>
-                    </ul>
+<!--                    <ul>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                      <li><img src="@/assets/book.jpg"></li>-->
+<!--                    </ul>-->
                   </div>
                 </div>
                 </router-link>
