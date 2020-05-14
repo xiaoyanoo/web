@@ -10,7 +10,7 @@ import loadpage from "@/views/loadpage";
 import book_info from "../views/book_info";
 import favorite from "../views/favorite";
 import write from "../views/write";
-import book_edit from "@/views/book_manage/book_edit";
+import book_edit from "@/views/book_manage/book_edit.vue";
 // import Creatbook from "../views/creatbook";
 // import book_info from "../views/book_info";
 
@@ -71,9 +71,9 @@ export default new Router({
             component: loadpage
         },
 		{
-		    path: '/book_manage/book_edit',
-		    name: 'book_edit',
-		    component: book_edit
+			path: '/book_manage/book_edit',
+			name: 'book_edit',
+			component: book_edit
 		}
         // {
         //     path: "/creatbook",

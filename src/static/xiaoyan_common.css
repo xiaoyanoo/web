@@ -1,10 +1,10 @@
-/* body{
+body{
   font:14px/1.4 Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Noto Sans CJK SC,WenQuanYi Micro Hei,Arial,sans-serif;
   background:#fafafa;
 }
 a{
   color: #409EFF;
-} */
+}
 .fontf:{font:14px/1.4 Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Noto Sans CJK SC,WenQuanYi Micro Hei,Arial,sans-serif !important;},
 .relative{
   position: relative;
@@ -12,14 +12,22 @@ a{
 .absolute{
   position: absolute;
 }
+.middel{
+  display: table-cell;vertical-align: middle
+}
 /* 深灰色 */
 .bg0{background:#8F97A2 ;}
 /* //浅灰色 */
 .bg1{background:#D1D5D5 ;}
 /* 橙色 */
-.bg2{background: #FF9269;}
+.bg2{background: #FF9269 !important;}
 /* 蓝绿色 */
 .bg3{background: #00D0C5;}
+/* 淡蓝灰 */
+.bg4{background:#F9FAFC;}
+/* 淡蓝灰 */
+.bg5{background:#F7F8FC;}
+.bg6{background:#FBFBFB;}
 .inline-block{display: inline-block;}
 .block{display: block;}
 .overflow{overflow: auto;}
@@ -52,6 +60,7 @@ a{
 .text-color-8{color: #B7B7B7;}
 /* 灰色 */
 .text-color-9{color: #798989;}
+.text-color-10{color:#8F97A2}
 .padding-5-10{padding:5px 10px}
 .padding-10{padding: 10px;}
 .padding-20{padding: 20px;}
@@ -102,13 +111,13 @@ a{
 }
 .shadow-lr{ box-shadow:7px 0 7px -7px rgba(0, 0, 0, 0.1),-7px 0 7px -7px rgba(0, 0, 0, 0.1);}
 .shadow-bottom{ box-shadow: 0px 7px 7px -7px rgba(0, 0, 0, 0.1);}
-.shadow-right{ box-shadow: 7px 0px 7px -7px rgba(0, 0, 0, 0.1);}
+.shadow-right{ box-shadow: 12px 0px 12px -12px rgba(0, 0, 0, 0.1);}
 .shadow-left{ box-shadow: -7px 0px 7px -7px rgba(0, 0, 0, 0.1);}
-.showdow-top{ box-shadow: 0px -7px 7px -7px rgba(0, 0, 0, 0.1);}
+.shadow-top{ box-shadow: 0px -7px 7px -7px rgba(0, 0, 0, 0.1);}
 .text-left{text-align: left;}
 .text-right{text-align: right;}
 .text-center{text-align: center;}
-.border-bottom{border-bottom:1px solid #f7f7f7}
+.border-bottom{border-bottom:1px solid #F2F2F2}
 .border-right{border-right:1px solid #f7f7f7}
 .border-top{border-top:1px solid #f7f7f7}
 .border-left{border-left:1px solid #f7f7f7}
@@ -129,8 +138,8 @@ a{
   -webkit-line-clamp: 2;
 }
 .title-p,.title-p2{
-  font-size: 18px;
-  color:#151515
+  font-size: 16px;
+  color:#1B1B1B
 }
 .title-p{
   font-weight: 600;
