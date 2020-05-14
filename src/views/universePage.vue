@@ -111,7 +111,7 @@ export default {
             this.$refs.mySwiper2.$swiper.slideTo(index);
         }
     }
-} 
+}
 </script>
 
 <style lang="scss">
@@ -138,6 +138,7 @@ export default {
         }
         .univName0{
             font-size: 38px;
+            font-family: ZhenyanGB;
             font-weight: bold;
             text-align: right;
             color: #000;

@@ -25,7 +25,7 @@
           <div class="h30">&ensp;</div>
           <h1>科技宇宙</h1>
           <div class="h10">&emsp;</div>
-          <h5>由绝对物理规则构成的宇宙，所有生命体都无法超规则。但同样在一代代超级智者们的不断努力下某些生命体种族开始掌握规则的运转逻辑，他们建造制作各种机械体探索并开发规则的使用。</h5>
+          <h5>{{universe_information}}</h5>
           <div class="h20">&ensp;</div>
           <h1>文明等级</h1>
           <ul class="set-rank">
@@ -49,13 +49,12 @@
                     </Button>
                     <DropdownMenu slot="list" >
                         <DropdownItem  v-for="(item,inx) in zhang" :key="inx" :name="item.label" >{{item.label}}</DropdownItem>
-                        <DropdownItem name="pre">新建</DropdownItem>
 
                     </DropdownMenu>
                 </Dropdown>
               </Col>
               <Col span="15"><Input v-model="value1" size="large" :value="value1" class="write-content-top-name" /></Col>
-              <Col span="4"><Button class="write-save"><span>保存</span><Icon type="md-arrow-dropright" /></Button></Col>
+              <Col span="4"><Button class="write-save"><span>提交</span><Icon type="md-arrow-dropright" /></Button></Col>
             </Row>
           </div>
           <div class="write-content-txt">
@@ -72,12 +71,12 @@
               <h1>她与她在最不能不能说的故事</h1>
               <br>
               <ul>
-                <li><span class="icon iconfont f14 vm">&#xe6c3;</span><span class="f12">6</span></li>
-                <li><span class="icon iconfont f12 vm mr5">&#xe63f;</span><span class="f12">35647</span></li>
-                <li><span class="icon iconfont f14 vm mr5">&#xe600;</span><span class="f12">45635</span></li>
-                <li><span class="icon iconfont f14 vm mr5">&#xe6a0;</span><span class="f12">35647</span></li>
-                <li><span class="icon iconfont f14 vm mr5">&#xe60e;</span><span class="f12">465372</span></li>
-                <li><span class="icon iconfont f14 vm mr5">&#xe61b;</span><span class="f12">35647</span></li>
+                <li><span class="icon iconfont f14 vm">&#xe6c3;</span><span class="f12">{{Infomation_Collection}}</span></li>
+                <li><span class="icon iconfont f12 vm mr5">&#xe63f;</span><span class="f12">{{Information_Chapter}}</span></li>
+                <li><span class="icon iconfont f14 vm mr5">&#xe600;</span><span class="f12">{{Information_Fabulous}}</span></li>
+                <li><span class="icon iconfont f14 vm mr5">&#xe6a0;</span><span class="f12">{{Information_Number}}</span></li>
+                <li><span class="icon iconfont f14 vm mr5">&#xe60e;</span><span class="f12">{{Information_Share}}</span></li>
+                <li><span class="icon iconfont f14 vm mr5">&#xe61b;</span><span class="f12">{{Information_Coin}}</span></li>
               </ul>
             </div>
             <div class="h60">&ensp;</div>
@@ -138,6 +137,8 @@
     name: 'write',
     data: () => {
       return {
+        universe_information: "由绝对物理规则构成的宇宙，所有生命体都无法超规则。但同样在一代代超级智者们的不断努力下某些生命体种族开始掌握规则的运转逻辑，" +
+            "他们建造制作各种机械体探索并开发规则的使用。",
         wrank: [
           ["Lv 1","原始文明"],
           ["Lv 2","部落文明"],
