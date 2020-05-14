@@ -1,5 +1,5 @@
 <template>
-	<div></div>
+	<div>aaaa</div>
 </template>
 
 <style>
@@ -10,7 +10,7 @@
 <script>
   import '@/static/xiaoyan_common.css'
   export default {
-    name:'post',
+    name:'book_edit',
     components: {
     },
     data() {
