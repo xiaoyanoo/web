@@ -96,14 +96,9 @@
         <h1>热门</h1>
         <h2><span class="fang">&ensp;</span>全部</h2>
         <ul>
-          <li><a href="#">科技宇宙</a></li>
-          <li><a href="#">魔法宇宙</a></li>
-          <li><a href="#">元气宇宙</a></li>
-          <li><a href="#">混乱宇宙</a></li>
-          <li><a href="#">蛮荒宇宙</a></li>
-          <li><a href="#">虫群宇宙</a></li>
-          <li><a href="#">霸体宇宙</a></li>
-
+          <li v-for="uni in universe" v-bind:key="uni.id" @click="universe_choose_function">
+            {{ uni.text }}
+          </li>
         </ul>
     </Col>
 
@@ -462,6 +457,15 @@ export default {
   },
   data(){
     return {
+      universe:[
+        {text: "科技宇宙"},
+        {text: "魔法宇宙"},
+        {text: "元气宇宙"},
+        {text: "混乱宇宙"},
+        {text: "蛮荒宇宙"},
+        {text: "虫群宇宙"},
+        {text: "霸体宇宙"},
+          ],
       univ_pai: [],
       novel_pai: [],
     }
@@ -471,6 +475,16 @@ export default {
         Col,
     },
   methods:{
+        universe_choose_function() {
+          this.$api.get('api/mai/pub/all', {
+
+          }, response =>{
+            // eslint-disable-next-line no-empty
+            if (response.status >= 200 && response.status < 300) {
+
+            }
+          })
+        },
         ts: function(){
             console.log(12);
         },
