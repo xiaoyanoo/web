@@ -72,8 +72,8 @@ export default new Router({
         },
 		{
 		    path: '/book_manage/book_edit',
-		    name: 'book_edit',
-		    component: book_edit
+            name: 'book_edit',
+            component: book_edit
 		}
         // {
         //     path: "/creatbook",

@@ -96,8 +96,8 @@
         <h1>热门</h1>
         <h2><span class="fang">&ensp;</span>全部</h2>
         <ul>
-          <li v-for="uni in universe" v-bind:key="uni.id" @click="universe_choose_function">
-            {{ uni.text }}
+          <li v-for="uni in universe" v-bind:key="uni.universeId" @click="universe_choose_function(uni.universeId)">
+            {{ uni.universeName }}
           </li>
         </ul>
     </Col>
@@ -105,338 +105,23 @@
       <Row type="flex" justify="center">
             <Col span="18" class="bookListCon">
                 <div class="bookList">
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
+                    <div class="bookItem" @click="tss"   v-for="book in uniBooks" v-bind:key="book.novelId">
+                        <img :src="`http://180.76.245.160/data/${book.cover}`" alt="">
                         <div class="bookInfo">
-                            <p class="bookTitle">黑黑夜黑夜黑夜黑夜黑夜夜</p>
-                            <p class="bookAuthor">炭白</p>
+                            <p class="bookTitle">{{book.novelName}}</p>
+                            <p class="bookAuthor">{{book.author.pseudonym}}</p>
                             <p class="bookTag">
                                 <span @click.stop="ts">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-mulu"></use>
                                       </svg>
-                                      2134
+                                      {{book.totalRecommend}}
                                 </span>
                                 <span>
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-mulu"></use>
                                       </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bookItem" @click="tss">
-                        <img src="@/assets/book.jpg" alt="">
-                        <div class="bookInfo">
-                            <p class="bookTitle">黑夜</p>
-                            <p class="bookAuthor">炭白</p>
-                            <p class="bookTag">
-                                <span @click.stop="ts">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      2134
-                                </span>
-                                <span>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-mulu"></use>
-                                      </svg>
-                                      4354
+                                      {{book.totalCollect}}
                                 </span>
                             </p>
                         </div>
@@ -458,16 +143,10 @@ export default {
   data(){
     return {
       universe:[
-        {text: "科技宇宙"},
-        {text: "魔法宇宙"},
-        {text: "元气宇宙"},
-        {text: "混乱宇宙"},
-        {text: "蛮荒宇宙"},
-        {text: "虫群宇宙"},
-        {text: "霸体宇宙"},
           ],
       univ_pai: [],
       novel_pai: [],
+        uniBooks:[],
     }
   },
   components: {
@@ -475,13 +154,13 @@ export default {
         Col,
     },
   methods:{
-        universe_choose_function() {
-          this.$api.get('api/mai/pub/all', {
+        universe_choose_function(universeId) {
+          this.$api.get(`api/main/pub/novel/universe/${universeId}?direction=ASC`, {
 
           }, response =>{
             // eslint-disable-next-line no-empty
             if (response.status >= 200 && response.status < 300) {
-
+                this.uniBooks=response.data.resData.content
             }
           })
         },
@@ -525,12 +204,23 @@ export default {
         console.log(response.message);
       }
     })
+
+      this.$api.get('api/main/pub/all', {
+
+      }, response =>{
+          if (response.status >= 200 && response.status < 300) {
+              console.log(response.data.resData)
+              this.universe=response.data.resData
+              this.universe_choose_function(this.universe[0].universeId)
+
+          }
+      })
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 @import "../fonts/font/iconfont.css";
 
 
@@ -564,4 +254,11 @@ background:rgba(251,251,251,1);
 .fang{width: 8px;height: 24px;background:#000;position: absolute;left: -15px;top:7px;}
 .index-left ul li{font-size: 24px; color: #8F97A2;list-style: none;margin-top: 10px;}
 .index-right{float: left;}
+
+.bookItem{
+    img{
+        height: 227px;
+    }
+
+}
 </style>
