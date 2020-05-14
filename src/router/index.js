@@ -71,9 +71,9 @@ export default new Router({
             component: loadpage
         },
 		{
-			path: '/book_manage/book_edit',
-			name: 'book_edit',
-			component: book_edit
+		    path: '/book_manage/book_edit',
+            name: 'book_edit',
+            component: book_edit
 		}
         // {
         //     path: "/creatbook",

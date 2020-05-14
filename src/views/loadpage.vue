@@ -21,7 +21,7 @@
             <div class="passwd">密码</div>
             <div class="pwd"><input v-model="password_1" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
             <div class='sub'>
-              <p @click="load_click_function" style="line-height: 50px;text-align: center;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;">
+              <p @click="login_click_function" style="line-height: 50px;text-align: center;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;">
               登录
               </p>
             </div>
@@ -33,15 +33,10 @@
       <div class="right_log" v-if="juice == 1">
         <div class="log_title">
           <div></div>
-          <div class="sign_in"><a @click="juice = 0,res_err = false,log_err = false,repassword_err = false">登录</a></div>
-          <div class="sign_up"><a @click="juice = 1,res_err = false,log_err = false,repassword_err = false">注册</a></div>
+          <div class="sign_in"><a @click="juice = 0">登录</a></div>
+          <div class="sign_up"><a @click="juice = 1">注册</a></div>
           <div></div>
         </div>
-        <div class="tips" v-if="repassword_err">两次密码不一样！</div>
-        <div class="tips" v-if="res_err">注册失败！(手机号、邮件或用户名已存在）</div>
-        <div class="tips" v-if="res_err">QwQ看下面提示哦</div>
-        <div class="tips" v-if="information">账号不能为纯数字！</div>
-        <div class="tips" v-if="res_true">注册成功！</div>
         <form action="">
           <div class="log_operate" style="margin-left: 80px;margin-top: 30px;">
             <div style="color: #787a7c;font-size: 17px;margin-bottom: 10px;">账号</div>
@@ -55,6 +50,9 @@
             <div class='sub'>
               <p @click="reg_click_function" style="line-height: 50px;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center">
               注册
+              </p>
+              <p @click="juice = 0" style="line-height: 50px;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center">
+                去登陆
               </p>
             </div>
           </div>
@@ -78,86 +76,93 @@
     name: "loadpage",
     data(){
       return {
-        repassword_err: false,
-        page_key: true,
         juice: 0,  // 0-注册，1-登陆，2-忘记密码
-        userName_1:"",
+        userName_1:"", //log
         password_1:"",
-        userName_2:"",
+        userName_2:"", //res
         password_2:"",
-        password_3:"",
-        res_err: false,
-        res_true: false,
-        information: true,
-        log_err: false,
+        password_3:"", //re
       }
     },
-
-
-    mounted(){
-      // this.$api.post('api/main/pub/login', {
-      //   topCount: 8
-      // }, response =>{
-      //   if (response.status >= 200 && response.status < 300) {
-      //     console.log(response.data);
-      //   } else {
-      //     console.log(response.message);
-      //   }
-      // })
-    },
-
 
     methods:{
-      load_click_function(){
-        //这里写登陆逻辑，先做验证再写接口，接口写在这里面，
-        if(this.userName_1 && this.password_1){
-          this.$api.post('api/main/pub/login', {
-            "loginName": this.userName_1,
-            "password": this.password_1,
-            "rememberMe": true
-          }, response =>{
-            console.log(response)
-            if (response.status >= 200 && response.status < 300) {
-              this.log_err = true;
-              this.$router.push({name: 'personone'});
-
-            } else {
-
-              this.log_err = true;
-
-            }
-          })
-        }else{
-          this.log_err = true;
+      //注册
+      reg_click_function() {
+        var jsons={
+          //"email": "string",
+          //"headImage": "string",
+          //"nickname": "string",
+          "password": this.password_2,
+          //"phone": "string",
+          "username": this.userName_2
         }
-      },
-      reg_click_function(){
-        //这里写注册逻辑，先做验证再写接口，接口写在这里面，
-        if(this.userName_2 && this.password_2 && this.password_3 === this.password_2){
-          this.$api.post('api/main/pub/register', {
-            "username": this.userName_2,
-            "password": this.password_2,
-          }, response =>{
-            // eslint-disable-next-line no-undef
-            console.log(response)
-            if (response.resCode === "0000") {
-              this.repassword_err = false;
-              this.information = false;
-              this.res_err = false;
-              this.res_true = true;
-            } else {
-              this.res_err = true;
-            }
-          })
-        }else{
-          if (this.password_3 !== this.password_2){
-            this.repassword_err = true;
-          } else {
-            this.res_err = true
+//在需要的事件中直接使用
+        this.$axios({
+          url:'api/main/pub/register',
+          method: 'post',
+          data:jsons,
+          header:{
+            'Content-Type':'application/json'  //如果写成contentType会报错
           }
-        }
+        })
+            .then(res=>{
+              if(res.data.resCode !== '0000'){
+                //alert(res.data.resMsg)
+                //尝试饿了么UI
+                this.$message.error('错啦QwQ,'+res.data.resMsg);
+              } else {
+                //表示用户注册成功，切回登陆页面并填入注册的账号
+                this.$message({
+                  message: '耶~！，'+res.data.resMsg,
+                  type: 'success'
+                });
+              }
+              console.log(res.data.resMsg)
+              console.log(res.data.resCode)
 
-      }
+            })
+            .catch(Error=>{
+              console.log(Error)
+            })
+      },
+
+      //登陆
+      login_click_function() {
+        var jsons={
+          "loginName": this.userName_1,
+          "password": this.password_1,
+          "rememberMe": true
+        }
+//在需要的事件中直接使用
+        this.$axios({
+          url:'api/main/pub/login',
+          method: 'post',
+          data:jsons,
+          header:{
+            'Content-Type':'application/json'  //如果写成contentType会报错
+          }
+        })
+            .then(res=>{
+              if(res.data.resCode !== '0000'){
+                //alert(res.data.resMsg)
+                //尝试饿了么UI
+                this.$message.error('错啦QwQ,'+res.data.resMsg);
+              } else {
+                //表示用户登陆成功
+                this.$message({
+                  message: res.data.resMsg+'欢迎你！~',
+                  type: 'success'
+                });
+                this.$router.push({path: '/'})
+              }
+              console.log(res.data.resMsg)
+              console.log(res.data.resCode)
+
+            })
+            .catch(Error=>{
+              console.log(Error)
+            })
+      },
     }
   }
 </script>
