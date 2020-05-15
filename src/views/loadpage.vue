@@ -141,21 +141,18 @@
             'Content-Type':'application/json'  //如果写成contentType会报错
           }
         })
-            .then(res=>{
-              if(res.data.resCode !== '0000'){
-                //alert(res.data.resMsg)
-                //尝试饿了么UI
-                this.$message.error('错啦QwQ,'+res.data.resMsg);
-              } else {
-                //表示用户登陆成功
+            .then(res=> {
+              if (res.data.resCode !== '0000') {
+                this.$message.error(res.data.resMsg);
+              }else {
                 this.$store.commit('getUserName', this.userName_1)
                 this.$store.commit('changeinfoLogin', true)
+                this.$router.push({name:'/'})
                 this.$message({
-                  message: res.data.resMsg+'欢迎你！~',
+                  message: '耶~！，'+res.data.resMsg,
                   type: 'success'
                 });
-                this.$router.push({path: '/'})
-              }
+            }
               console.log(res.data.resMsg)
               console.log(res.data.resCode)
 

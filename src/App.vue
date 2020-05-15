@@ -9,8 +9,8 @@
           </Row>
         </Col>
         <Col span="4" v-if = "login == false"><router-link to="/loadpage" class="load"><el-button type="primary">登录/注册</el-button></router-link></Col>
-      <Col span="4" v-if ="login == true">QAQ欢迎你~{{username}}</Col>
      <Col span="4" v-if ="login == true"><el-button type="danger" @click="log_off">退出登录</el-button></Col>
+      <h1 v-if ="login == true">QAQ欢迎你~{{username}}</h1>
     </Row>
     <router-view></router-view>
   </div>
