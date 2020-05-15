@@ -2,7 +2,16 @@
 	<el-container style="overflow: hidden;height: 100vh;" class="bg5">
 		<v-anthor ref="vanthor"></v-anthor>
 		<el-main width="46%" class="" style="padding: 30px 50px;">
-			
+			<div class="box-border padding-30" >
+				<span class="margin-r50 f16"><i class="el-icon-s-promotion margin-r10"></i><span class="weight700">3126</span></span>
+				<span class="margin-r50 f16"><i class="el-icon-star-off margin-r10"></i><span class="weight700">3126</span></span>
+				<span class="margin-r50 f16"><i class="el-icon-notebook-1 margin-r10"></i><span class="weight700">3126</span></span>
+				<span class="margin-r50 "><i class="el-icon-coin margin-r10"></i><span class="weight700">3126</span></span>
+				<span class="margin-r50 f16"><i class="el-icon-medal margin-r10"></i><span class="weight700">3126</span></span>
+				<span class="margin-r50 f16"><i class="el-icon-user margin-r10"></i><span class="weight700">3126</span></span>
+				<span class="margin-r50 f16"><i class="el-icon-receiving margin-r10"></i><span class="weight700">3126</span></span>
+				<el-button class="fr" type="small" @click="goBookEdit" style="background-color: rgb(79, 93, 106);color:#fff;border-color:rgb(79, 93, 106) ;">创建作品</el-button>
+			</div>
 			
 		</el-main>
 	</el-container>
@@ -106,6 +115,7 @@
 <script>
   import '@/static/xiaoyan_common.css'
   import '@/fonts/font_2/iconfont.css'
+  // import '@/fonts/font_3/iconfont.css'
   import vAnthor from '@/views/common/anthor.vue'
   export default {
     name:'book_edit',
@@ -204,6 +214,9 @@
 					this.log_err = true;
 				}
 			})
+		},
+		goBookEdit(){
+			this.$router.push({ path: '/book_manage/book_edit', query: { 'anthor': JSON.stringify(this.anthor)} })
 		}
 			
 	}

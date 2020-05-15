@@ -22,19 +22,25 @@
 				<el-form label-position="left" :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 					<div class="overflow ">
 						<div class=" inline-block" style="position: relative;">
+							<!-- <el-dialog :visible.sync="dialogVisible">
+							  <img width="100%" :src="dialogImageUrl" alt="">
+							</el-dialog> -->
 							<el-upload
 								style="position: absolute;z-index: 1;right: 3px;bottom: 10px;"
 								class="upload-demo"
-								action="https://jsonplaceholder.typicode.com/posts/"
+								action="/api/work/upload"
+								:on-success="handleAvatarSuccess"
 								:on-preview="handlePreview"
 								:on-remove="handleRemove"
 								:before-remove="beforeRemove"
-								multiple
-								:limit="3"
+								:before-upload="beforeUpload"
+								:limit="1"
+								:accept='file_type'
 								:on-exceed="handleExceed"
+								:show-file-list="showFileList"
+								ref="upload"
 								>
-								<el-button size="small" type="primary" style="background: #D1D5D5;opacity: 0.8;font-size: 10px;border: none;padding: 3px 8px;"><i class="iconfont iconshangchuan " style="margin-right: 5px;"></i>更换</el-button>
-								<!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
+								<el-button size="small" type="primary" style="background: #D1D5D5;opacity: 0.8;font-size: 10px;border: none;padding: 3px 8px;position: absolute;right: 3px;bottom: 3px;"><i class="iconfont iconshangchuan " style="margin-right: 5px;" ></i>更换</el-button>
 							</el-upload>
 							<el-image
 							style="width: 132px; height: 197px;border-radius: 5px;border:1px solid #f7f7f7"
@@ -135,6 +141,9 @@
 </template>
 
 <style>
+	.upload-demo{
+		width: 100% !important;
+	}
 	.juan-title{
 		cursor: pointer;
 		color: #798989;
@@ -240,6 +249,7 @@
     },
     data() {
       return {
+		showFileList:false,
 		input:'',
         options: [{
 			value: '选项1',
@@ -274,11 +284,16 @@
 		novelId:1,
 		detail:{},
 		circleUrl: "",
+		file_type:'png,jpg,jpeg',
+		anthor:{},
       };
     },
     created:function () {
 		if(this.$router.query){
 			this.novelId=this.$router.query.novelId;
+		}
+		if(this.$router.query){
+			this.anthor=this.$router.query.anthor
 		}
     },
     mounted:function(){
@@ -295,6 +310,10 @@
 		}
     },
 	methods: {
+		handleAvatarSuccess(res, file) {
+			this.url = URL.createObjectURL(file.raw);
+			this.$refs.upload.clearFiles();
+		},
 		errorHandler() {
 			return true
 		},
@@ -343,6 +362,18 @@
 					this.log_err = true;
 				}
 			})
+		},
+		beforeUpload(file){
+			var testmsg=file.name.substring(file.name.lastIndexOf('.')+1)
+			if(this.file_type.indexOf(testmsg)===-1){
+			  this.$message({
+			            showClose: true,
+			            message: '文件格式不符合要求',
+			            type:'error'
+			          })
+			  this.is_upload=1;
+			  return testmsg;
+			}
 		}
 			
 	}
