@@ -7,12 +7,11 @@
 
         <div class="log_title">
           <div></div>
-          <div class="sign_in"><a @click="juice = 0,res_err = false,log_err = false,repassword_err = false">登录</a></div>
-          <div class="sign_up"><a @click="juice = 1,res_err = false,log_err = false,repassword_err = false">注册</a></div>
+          <div class="sign_in"><a @click="juice = 0,res_err = false,repassword_err = false">登录</a></div>
+          <div class="sign_up"><a @click="juice = 1,res_err = false,repassword_err = false">注册</a></div>
           <div></div>
         </div>
 
-        <div class="tips" v-if="log_err" style="color: red;text-align: center;height: 20px;">登陆失败！</div>
 
         <form action="">
           <div class="log_operate">
@@ -142,19 +141,18 @@
             'Content-Type':'application/json'  //如果写成contentType会报错
           }
         })
-            .then(res=>{
-              if(res.data.resCode !== '0000'){
-                //alert(res.data.resMsg)
-                //尝试饿了么UI
-                this.$message.error('错啦QwQ,'+res.data.resMsg);
-              } else {
-                //表示用户登陆成功
+            .then(res=> {
+              if (res.data.resCode !== '0000') {
+                this.$message.error(res.data.resMsg);
+              }else {
+                this.$store.commit('getUserName', this.userName_1)
+                this.$store.commit('changeinfoLogin', true)
+                this.$router.push({name:'/'})
                 this.$message({
-                  message: res.data.resMsg+'欢迎你！~',
+                  message: '耶~！，'+res.data.resMsg,
                   type: 'success'
                 });
-                this.$router.push({path: '/'})
-              }
+            }
               console.log(res.data.resMsg)
               console.log(res.data.resCode)
 
