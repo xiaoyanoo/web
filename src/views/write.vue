@@ -98,7 +98,7 @@
                   type="drag"
                   action="//jsonplaceholder.typicode.com/posts/"
                   style="display: inline-block;width: 228px;">
-                  <div style="height: 340px; border: 1px dashed #707070; line-height: 340px;background:#24303C; border:none;">
+                  <div @click="CoverUpLoad" style="height: 340px; border: 1px dashed #707070; line-height: 340px;background:#24303C; border:none;">
                       <Icon type="md-add" size="50" class="cD1D v-10" /><span class="f36 cD1D">添加</span>
                   </div>
               </Upload>
@@ -210,6 +210,24 @@
       Upload
     },
     methods:{
+      CoverUpLoad(){
+        var jsons={
+
+        }
+        this.$axios({
+          url:'',
+          data:jsons,
+          header:{
+            'Content-Type':'application/json'  //如果写成contentType会报错
+          }
+        })
+            .then(res=>{
+              console.log(res.data)
+            })
+            .catch(Error=>{
+              console.log(Error)
+            })
+      },
       ts: function(name){
         this.xiala=name
       },

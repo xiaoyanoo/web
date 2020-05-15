@@ -59,8 +59,7 @@
                 <span class="c0 b f28">3126</span>
               </Col>
               <Col span="4">
-                <span class="icon iconfont f28 cD1D vt">&#xe6c3;</span>
-                <span class="c0 b f28"><button>创建书籍~</button></span>
+                <span class="c0 b f28"><el-button type="primary">创建书籍</el-button></span>
               </Col>
             </Row>
             <div class="h180">&ensp;</div>
@@ -138,7 +137,7 @@
       }
     },
     mounted() {
-
+      this.$store.commit('changeNav', 0)
     }
   }
 </script>
