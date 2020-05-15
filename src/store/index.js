@@ -8,6 +8,9 @@ export default new Vuex.Store({
       count: 1,
       nav: 1,
       login: false,
+      isAuthor: false,
+      infoLogin: 0,
+      username:"",
     },
     mutations: {
       increment (state) {
@@ -18,6 +21,17 @@ export default new Vuex.Store({
       },
       chengeLogin (state, param){
         state.login = param;
+      },
+      //是否是登陆状态
+      infoAuthor(state, param){
+        state.isAuthor = param;
+      },
+      //判断是否登陆
+      changeinfoLogin (state, param) {
+        state.login = param
+      },
+      getUserName (state, param) {
+        state.username = param
       }
     }
   })

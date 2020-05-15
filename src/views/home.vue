@@ -3,101 +3,34 @@
     <br>
     <br>
     <br>
-    <router-link to="/book_info" class="">   <!--  记得删除这个标签，仅供展示用！！！！  -->
+
     <div id="tablebox">
       <ul class="dashuo-list">
-        <li>
+
+        <li @click="universe_top_function" v-for="book_top in uniBooks_top" v-bind:key="book_top.novelId">
           <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
+            <img :src="`http://180.76.245.160/data/${book_top.cover}`" alt="">
           </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
+          <h1>{{book_top.novelName}}</h1>
+          <h2>{{book_top.author.pseudonym}}</h2>
           <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
+          <p></p>
           <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
         </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
-        <li>
-          <div class="dashuo-list-img">
-            <img src="@/assets/book.jpg">
-          </div>
-          <h1>黑夜如雪</h1>
-          <h2>炭白</h2>
-          <br>
-          <p>他紧张兮兮的再次把头探出去，孟晓涵有点生气，但没有表现出来，只是微笑着拿过水杯说要出去接水。他能想到，孟晓涵一定会把别人用过的杯子洗上。</p>
-          <a href="#"><span class="icon iconfont f24 tfrte90">&#xe779;</span></a>
-        </li>
+
       </ul>
     </div>
-    </router-link>
+
     <br>
     <br>
     <br>
+
     <Col span="6" class="index-left">
         <h1>热门</h1>
         <h2><span class="fang">&ensp;</span>全部</h2>
         <ul>
           <li v-for="uni in universe" v-bind:key="uni.universeId" @click="universe_choose_function(uni.universeId)">
-            {{ uni.universeName }}
+            <el-button plain>{{ uni.universeName }}</el-button>
           </li>
         </ul>
     </Col>
@@ -146,7 +79,8 @@ export default {
           ],
       univ_pai: [],
       novel_pai: [],
-        uniBooks:[],
+      uniBooks:[],
+      uniBooks_top:[],
     }
   },
   components: {
@@ -164,6 +98,16 @@ export default {
             }
           })
         },
+    universe_top_function(universeId) {
+      this.$api.get(`api/main/pub/novel/universe/${universeId}?direction=ASC`, {
+
+      }, response =>{
+        // eslint-disable-next-line no-empty
+        if (response.status >= 200 && response.status < 300) {
+          this.uniBooks_top=response.data.resData.content
+        }
+      })
+    },
         ts: function(){
             console.log(12);
         },

@@ -70,11 +70,12 @@ export default new Router({
             name: 'loadpage',
             component: loadpage
         },
-		{
-		    path: '/book_manage/book_edit',
+        {
+            // eslint-disable-next-line no-mixed-spaces-and-tabs
+            path: '/book_manage/book_edit',
             name: 'book_edit',
             component: book_edit
-		}
+        }
         // {
         //     path: "/creatbook",
         //     name: 'creatbook',
