@@ -1,22 +1,6 @@
 <template>
 	<el-container style="overflow: hidden;height: 100vh;" class="bg5">
-		<el-aside style="width: 17%;margin-right: 5px;" class="shadow-right bg4 padding-20">
-			<div class="text-center" style="margin-top: 30%;">
-				<el-avatar :size="70"  src="https://empty"  @error="errorHandler">
-					<img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
-				</el-avatar>
-				<p class="title-p2 padding-tb-10">不愿意透露姓名的作者</p>
-				<p class="text-color-8 padding-tb-10" >作者</p>
-			</div>
-			<div class="text-left" style="margin-top: 30px;">
-				<p class="text-color-10 margin-b20 hover"  style="color: #8F97A2;"><i class="iconfont iconshuji margin-r10"></i>作品</p>
-				<p class="text-color-10 hover" style="color: #8F97A2;"><i class="iconfont iconshoucang margin-r10"></i>收藏</p>
-			</div>
-			<div class="absolute" style="bottom:30px">
-				<p class="text-color-10 margin-b20 hover"  style="color: #8F97A2;"><i class="iconfont iconshezhi margin-r10"></i>设置</p>
-				<p class="text-color-10 hover"  style="color: #8F97A2;"><i class="iconfont iconicon4 margin-r10"></i>退出</p>
-			</div>
-		</el-aside>
+		<v-anthor ref="vanthor"></v-anthor>
 		<el-main width="46%" class="" style="padding: 30px 50px;">
 			<div class="">
 				<span class="fl">
@@ -248,9 +232,11 @@
 <script>
   import '@/static/xiaoyan_common.css'
   import '@/fonts/font_2/iconfont.css'
+  import vAnthor from '@/views/common/anthor.vue'
   export default {
     name:'book_edit',
     components: {
+		vAnthor,
     },
     data() {
       return {
@@ -307,7 +293,6 @@
 		}else{
 			this.getDetail();
 		}
-		
     },
 	methods: {
 		errorHandler() {
