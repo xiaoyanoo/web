@@ -85,8 +85,6 @@
         </form>
       </div>
 
-
-
       <div class="right_log" style="width: 600px; margin-left: 400px;" v-if="juice == 2">
         <div style="text-align: center;"><h1>修改密码</h1></div>
         <div style="text-align: center;font-size: 28px;margin-top: 50px;"><p>非常抱歉因为一些原因，暂不支持自助修改密码</p></div>
@@ -110,7 +108,14 @@
         password_3:"", //re
       }
     },
-
+    computed: {
+      username(){
+        return this.$store.state.username;
+      },
+      login(){
+        return this.$store.state.login;
+      },
+    },
     methods:{
       //注册
       reg_click_function() {

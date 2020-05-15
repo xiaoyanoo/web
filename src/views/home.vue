@@ -121,6 +121,7 @@ export default {
       }
     },
   mounted() {
+
     //在用户看到界面之前执行
     var a = document.getElementById("tablebox");
     var scroll_width = 100; //滚动一下的距离
