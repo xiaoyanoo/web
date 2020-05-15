@@ -285,7 +285,7 @@
 			{title:'第一卷','child':[{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0}]},
 			{title:'第二卷','child':[{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1}]}
 		],
-		novelId:'',
+		novelId:1,
 		detail:{},
 		circleUrl: "",
       };
