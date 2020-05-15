@@ -5,10 +5,11 @@
           <Row type="flex" justify="center" class="top">
             <Col span="3"><router-link to="/" class="font">大说</router-link></Col>
             <Col span="3"><router-link to="/universePage" class="font">宇宙</router-link></Col>
-            <Col span="3">作者</Col>
+            <Col span="3"><el-button type="primary" style="font-size: 18px" @click="application">成为作者</el-button></Col>
           </Row>
         </Col>
-        <Col span="4"><router-link to="/loadpage" class="load">登录/注册</router-link></Col>
+        <Col span="4" v-if="infoLogin == 0"><router-link to="/loadpage" class="load"><el-button type="primary">登录/注册</el-button></router-link></Col>
+        <Col span="4" v-if="infoLogin == 1"><router-link to="/loadpage" class="load"><el-button type="danger">退出登录</el-button></router-link></Col>
     </Row>
     <router-view></router-view>
   </div>
@@ -18,10 +19,54 @@
 import {Row, Col} from 'view-design'
 
 export default {
+  data(){
+    return{
+
+    }
+  },
   name: 'App',
   components: {
     Row,
     Col
+  },
+  methods:{
+    application(){
+      var jsons={
+        "email": "string",
+        "headImage": "string",
+        "isAuthor": Boolean ,
+        "isFrozen": Boolean ,
+        "nickname": "string",
+        "phone": "string",
+        "score": 0,
+        "username": "string"
+      }
+      this.$axios({
+        url:'api/main/user/info',
+        menthod: 'get',
+        data:jsons,
+        header:{
+          'Content-Type':'application/json'
+        }
+      })
+          .then(res=>{
+            // eslint-disable-next-line no-empty
+            if(res.data.resCode === '1111'){
+              this.$router.push({path: '/loadpage'})
+            }else if(res.data.resCode === '2222'){
+              this.$message({
+                message: '你的作者状态是'+res.data.resMsg+'人工快要忙疯啦~',
+                type: 'success'
+              })
+            }else if(res.data.resCode === '9999'){
+              this.$message.error(res.data.resMsg+'\n诶QAQ');
+            }
+            console.log(res.data)
+          })
+          .catch(Error=>{
+            console.log(Error)
+          })
+    },
   },
   computed: {
     nav(){

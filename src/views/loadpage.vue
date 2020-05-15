@@ -149,6 +149,7 @@
                 this.$message.error('错啦QwQ,'+res.data.resMsg);
               } else {
                 //表示用户登陆成功
+                this.$store.commit('changeinfoLogin', 1),
                 this.$message({
                   message: res.data.resMsg+'欢迎你！~',
                   type: 'success'
