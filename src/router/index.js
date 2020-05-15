@@ -4,13 +4,13 @@ import BookReader from "../views/book-reader/book-reader.vue";
 import UniverseList from '@/views/universe-list.vue'
 import Home from '@/views/home.vue'
 import BookCataLogue from '@/views/BookCataLogue.vue'
-import Personone from '@/views/personone.vue'
+import Personone from '@/views/book_manage/personone.vue'
 import universePage from '@/views/universePage'
 import loadpage from "@/views/loadpage";
 import book_info from "../views/book_info";
 import favorite from "../views/favorite";
 import write from "../views/write";
-import book_edit from "@/views/book_manage/book_edit";
+import book_edit from "@/views/book_manage/book_edit.vue";
 // import Creatbook from "../views/creatbook";
 // import book_info from "../views/book_info";
 
@@ -56,7 +56,7 @@ export default new Router({
             component: UniverseList
         },
         {
-            path: '/personone',
+            path: '/book_manage/personone',
             name: 'personone',
             component: Personone
         },
