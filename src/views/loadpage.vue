@@ -16,12 +16,22 @@
         <form action="">
           <div class="log_operate">
             <div class="AccountNumber">账号</div>
-            <div class="username"><input v-model="userName_1" class="username_text" type="text"></div>
+            <div class="username">
+              <el-input
+                    placeholder="请输入账号"
+                    v-model="userName_1"
+                    clearable style="width: 360px">
+            </el-input>
+            </div>
             <div class="passwd">密码</div>
-            <div class="pwd"><input v-model="password_1" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class="pwd">
+              <el-input placeholder="请输入密码" v-model="password_1" show-password style="width: 360px"></el-input>
+            </div>
             <div class='sub'>
-              <p @click="login_click_function" style="line-height: 50px;text-align: center;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;">
-              登录
+              <p @click="login_click_function" style="line-height: 50px;text-align: center;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;">
+                <el-button type="primary" style="width: 360px;text-align: center;font-size: 20px">
+                  登陆
+                </el-button>
               </p>
             </div>
             <div class="forget_pwd" style="margin-top: 30px;margin-left: 140px;"><a @click="juice = 2" style="color: #787a7c;font-weight: 100;">忘记密码？</a></div>
@@ -39,19 +49,36 @@
         <form action="">
           <div class="log_operate" style="margin-left: 80px;margin-top: 30px;">
             <div style="color: #787a7c;font-size: 17px;margin-bottom: 10px;">账号</div>
-            <div class="username"><input v-model="userName_2" type="text" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class="username">
+              <el-input
+                    placeholder="请输入账号"
+                    v-model="userName_2"
+                    clearable style="width: 360px">
+            </el-input>
+            </div>
 
             <div style="color: #787a7c;font-size: 17px;margin-top: 40px;margin-bottom: 10px;">密码</div>
-            <div class="pwd"><input v-model="password_2" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class="pwd">
+              <el-input placeholder="请输入密码" v-model="password_2" show-password style="width: 360px"></el-input>
+            </div>
 
             <div style="color: #787a7c;font-size: 17px;margin-top: 40px;margin-bottom: 10px;">确认密码</div>
-            <div class="pwd"><input v-model="password_3" type="password" style="border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;"></div>
+            <div class="pwd">
+              <el-input placeholder="请输入密码" v-model="password_3" show-password style="width: 360px"></el-input>
+            </div>
             <div class='sub'>
-              <p @click="reg_click_function" style="line-height: 50px;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center">
-              注册
+              <p style="line-height: 50px;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center" v-if="password_3 !== password_2">
+             两次密码不一致
               </p>
-              <p @click="juice = 0" style="line-height: 50px;background: #8068ff;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center">
+              <p @click="reg_click_function" style="line-height: 50px;background: white;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center" v-if="password_3 === password_2">
+                <el-button type="primary" style="width: 360px;text-align: center;font-size: 20px">
+                  注册
+                </el-button>
+              </p>
+              <p @click="juice = 0" style="line-height: 50px;background: white;color: white;margin-top: 40px;width: 350px;height: 50px;font-size: 20px;font-weight: 600;border: none;text-align:center">
+                <el-button type="primary" style="width: 360px;text-align: center;font-size: 20px">
                 去登陆
+                </el-button>
               </p>
             </div>
           </div>
@@ -147,7 +174,7 @@
               }else {
                 this.$store.commit('getUserName', this.userName_1)
                 this.$store.commit('changeinfoLogin', true)
-                this.$router.push({name:'/'})
+                this.$router.push({ name: 'Home' })
                 this.$message({
                   message: '耶~！，'+res.data.resMsg,
                   type: 'success'
@@ -260,6 +287,6 @@
     margin-top: 30px;
   }
   .AccountNumber{color: #787a7c;font-size: 17px;margin-bottom: 10px;}
-  .username_text{border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 350px;height: 40px;}
+  .username_text{border-top: none;border-left: none;border-right: none;border-bottom: 0.5px solid #bbbdc1;width: 300px;height: 40px;}
   .passwd{color: #787a7c;font-size: 17px;margin-top: 40px;margin-bottom: 10px;}
 </style>

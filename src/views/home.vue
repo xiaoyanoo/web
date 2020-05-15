@@ -98,8 +98,8 @@ export default {
             }
           })
         },
-    universe_top_function(universeId) {
-      this.$api.get(`api/main/pub/novel/universe/${universeId}?direction=ASC`, {
+    universe_top_function(novelId) {
+      this.$api.get(`api/main/pub/novel/hot/${novelId}?direction=ASC`, {
 
       }, response =>{
         // eslint-disable-next-line no-empty
