@@ -10,6 +10,7 @@ export default new Vuex.Store({
       login: false,
       isAuthor: false,
       infoLogin: 0,
+      username:"",
     },
     mutations: {
       increment (state) {
@@ -27,7 +28,10 @@ export default new Vuex.Store({
       },
       //判断是否登陆
       changeinfoLogin (state, param) {
-        state.infoLogin = param
+        state.login = param
       },
+      getUserName (state, param) {
+        state.username = param
+      }
     }
   })

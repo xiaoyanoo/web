@@ -7,12 +7,11 @@
 
         <div class="log_title">
           <div></div>
-          <div class="sign_in"><a @click="juice = 0,res_err = false,log_err = false,repassword_err = false">登录</a></div>
-          <div class="sign_up"><a @click="juice = 1,res_err = false,log_err = false,repassword_err = false">注册</a></div>
+          <div class="sign_in"><a @click="juice = 0,res_err = false,repassword_err = false">登录</a></div>
+          <div class="sign_up"><a @click="juice = 1,res_err = false,repassword_err = false">注册</a></div>
           <div></div>
         </div>
 
-        <div class="tips" v-if="log_err" style="color: red;text-align: center;height: 20px;">登陆失败！</div>
 
         <form action="">
           <div class="log_operate">
@@ -149,7 +148,8 @@
                 this.$message.error('错啦QwQ,'+res.data.resMsg);
               } else {
                 //表示用户登陆成功
-                this.$store.commit('changeinfoLogin', 1),
+                this.$store.commit('getUserName', this.userName_1)
+                this.$store.commit('changeinfoLogin', true)
                 this.$message({
                   message: res.data.resMsg+'欢迎你！~',
                   type: 'success'

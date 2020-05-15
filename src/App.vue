@@ -5,11 +5,12 @@
           <Row type="flex" justify="center" class="top">
             <Col span="3"><router-link to="/" class="font">大说</router-link></Col>
             <Col span="3"><router-link to="/universePage" class="font">宇宙</router-link></Col>
-            <Col span="3"><el-button type="primary" style="font-size: 18px" @click="application">成为作者</el-button></Col>
+            <Col span="3" v-if ="login == true"><el-button type="primary" style="font-size: 18px" @click="application">成为作者</el-button></Col>
           </Row>
         </Col>
-        <Col span="4" v-if="infoLogin == 0"><router-link to="/loadpage" class="load"><el-button type="primary">登录/注册</el-button></router-link></Col>
-        <Col span="4" v-if="infoLogin == 1"><router-link to="/loadpage" class="load"><el-button type="danger">退出登录</el-button></router-link></Col>
+        <Col span="4" v-if = "login == false"><router-link to="/loadpage" class="load"><el-button type="primary">登录/注册</el-button></router-link></Col>
+      <Col span="4" v-if ="login == true">QAQ欢迎你~{{username}}</Col>
+     <Col span="4" v-if ="login == true"><el-button type="danger" @click="log_off">退出登录</el-button></Col>
     </Row>
     <router-view></router-view>
   </div>
@@ -30,6 +31,9 @@ export default {
     Col
   },
   methods:{
+    log_off(){
+      this.$store.commit('changeinfoLogin', false)
+    },
     application(){
       var jsons={
         "email": "string",
@@ -71,7 +75,13 @@ export default {
   computed: {
     nav(){
       return this.$store.state.nav;
-    }
+    },
+    login(){
+      return this.$store.state.login;
+    },
+    username(){
+      return this.$store.state.username;
+    },
   }
 }
 </script>
