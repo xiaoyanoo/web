@@ -9,6 +9,7 @@ a{
 .relative{
   position: relative;
 }
+ul{list-style-type:none}
 .absolute{
   position: absolute;
 }
