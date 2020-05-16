@@ -36,9 +36,9 @@ export default {
         swiperLen: 3,
         swiper1Data:[
             {
-                univName: '魔法宇宙',
-                univDes: '由绝对物理规则构成的宇宙，所有生命体都无法超规则。但同样在一代代超级智者们的不断努力下某些生命体种族开始掌握规则的运转逻辑，他们建造制作各种机械体探索并开发规则的使用。',
-                univImg: require('@/assets/book.jpg')
+                univName: '',
+                univDes: '',
+                univImg: ''
             },
             {
                 univName: '魔法宇宙',

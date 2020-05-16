@@ -9,8 +9,8 @@ export default new Vuex.Store({
       nav: 1,
       login: false,
       isAuthor: false,
-      infoLogin: 0,
       username:"",
+      pseudonym:""
     },
     mutations: {
       increment (state) {
@@ -19,10 +19,7 @@ export default new Vuex.Store({
       changeNav (state, param) {
         state.nav = param
       },
-      chengeLogin (state, param){
-        state.login = param;
-      },
-      //是否是登陆状态
+      //是否是作者状态
       infoAuthor(state, param){
         state.isAuthor = param;
       },
@@ -30,8 +27,12 @@ export default new Vuex.Store({
       changeinfoLogin (state, param) {
         state.login = param
       },
+      //得到账户名字
       getUserName (state, param) {
         state.username = param
-      }
+      },
+      getpseudonym (state,param) {
+        state.pseudonym = param
+      },
     }
   })

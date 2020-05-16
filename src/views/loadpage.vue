@@ -85,8 +85,6 @@
         </form>
       </div>
 
-
-
       <div class="right_log" style="width: 600px; margin-left: 400px;" v-if="juice == 2">
         <div style="text-align: center;"><h1>修改密码</h1></div>
         <div style="text-align: center;font-size: 28px;margin-top: 50px;"><p>非常抱歉因为一些原因，暂不支持自助修改密码</p></div>
@@ -110,7 +108,14 @@
         password_3:"", //re
       }
     },
-
+    computed: {
+      username(){
+        return this.$store.state.username;
+      },
+      login(){
+        return this.$store.state.login;
+      },
+    },
     methods:{
       //注册
       reg_click_function() {
@@ -159,35 +164,26 @@
           "password": this.password_1,
           "rememberMe": true
         }
-//在需要的事件中直接使用
-        this.$axios({
-          url:'api/main/pub/login',
-          method: 'post',
-          data:jsons,
-          header:{
-            'Content-Type':'application/json'  //如果写成contentType会报错
+        this.$api.originPost('api/main/pub/login',jsons).then(res=>{
+          if (res.data.resCode !== '0000') {
+            this.$message.error(res.data.resMsg);
+          }else {
+            this.$store.commit('getUserName', this.userName_1)
+            this.$store.commit('changeinfoLogin', true)
+            this.$router.push({ name: 'Home' })
+            this.$message({
+              message: '耶~！，'+res.data.resMsg,
+              type: 'success'
+            });
           }
-        })
-            .then(res=> {
-              if (res.data.resCode !== '0000') {
-                this.$message.error(res.data.resMsg);
-              }else {
-                this.$store.commit('getUserName', this.userName_1)
-                this.$store.commit('changeinfoLogin', true)
-                this.$router.push({ name: 'Home' })
-                this.$message({
-                  message: '耶~！，'+res.data.resMsg,
-                  type: 'success'
-                });
-            }
-              console.log(res.data.resMsg)
-              console.log(res.data.resCode)
 
-            })
-            .catch(Error=>{
-              console.log(Error)
-            })
-      },
+        }).catch(err=>{
+          console.log(err)
+          alert('登录失败哦QAQ')
+        })
+      }
+
+
     }
   }
 </script>

@@ -4,12 +4,12 @@
 		<el-main width="46%" class="" style="padding: 30px 50px;">
 			<div class="">
 				<span class="fl">
-					<el-select v-model="value" class="iconfont" filterable :placeholder="icon">
+					<el-select v-model="form.universeId" class="iconfont" filterable :placeholder="icon">
 						<el-option
-							v-for="item in options"
+							v-for="item in universeList"
 							:key="item.value"
-							:label="item.label"
-							:value="item.value">
+							:label="item.universeName"
+							:value="item.universeId">
 						</el-option>
 					</el-select>
 				</span>
@@ -22,9 +22,9 @@
 				<el-form label-position="left" :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 					<div class="overflow ">
 						<div class=" inline-block" style="position: relative;">
-							<!-- <el-dialog :visible.sync="dialogVisible">
-							  <img width="100%" :src="dialogImageUrl" alt="">
-							</el-dialog> -->
+<!--							<el-dialog :visible.sync="dialogVisible">-->
+<!--							  <img width="100%" :src="dialogImageUrl" alt="">-->
+<!--							</el-dialog>-->
 							<el-upload
 								style="position: absolute;z-index: 1;right: 3px;bottom: 10px;"
 								class="upload-demo"
@@ -44,27 +44,27 @@
 							</el-upload>
 							<el-image
 							style="width: 132px; height: 197px;border-radius: 5px;border:1px solid #f7f7f7"
-							:src="url"
+							:src="form.cover"
 							:fit="fits">
 								<div slot="error" class="image-slot " style="height: 100%;">
 									<i class="el-icon-picture-outline middel f30" style="margin-top:56%;margin-left: 40%;"></i>
 								</div>
-								
+
 							</el-image>
 						</div>
-						
+
 						<div class="fr form_r" style="width: 65%;">
-							<el-form-item label="全本订阅" class="text-color-8" style="margin-bottom: 0px;">
+							<!-- <el-form-item label="全本订阅" class="text-color-8" style="margin-bottom: 0px;">
 								<el-checkbox class="fr text-color-8" v-model="form.is_dingyue">不允许全本订阅</el-checkbox>
-							</el-form-item>
-							<el-form-item label="" class="text-color-8">
+							</el-form-item> -->
+							<!-- <el-form-item label="" class="text-color-8">
 							<div >
 								<el-input style="color: #fff;" placeholder="0为vip免费" v-model="form.dingyue">
 									<template slot="prepend"><i class="iconshouyimingxi iconfont"></i></template>
 									</el-input>
 							</div>
-							</el-form-item>
-							<el-form-item label="背景音乐" class="text-color-8" style="margin-bottom: 0px;">
+							</el-form-item> -->
+							<!-- <el-form-item label="背景音乐" class="text-color-8" style="margin-bottom: 0px;">
 							</el-form-item>
 							<el-form-item label="" class="text-color-8">
 							<div >
@@ -72,20 +72,20 @@
 									<template slot="prepend"><i class="icontubiaozhizuomoban iconfont"></i></template>
 									</el-input>
 							</div>
-							</el-form-item>
+							</el-form-item> -->
 						</div>
-						
+
 					</div>
 					<div class="form_b" style="margin-top: 50px;">
-						<el-form-item label="" class="text-color-8" style="margin-bottom: 0px;">
-							<el-input style="color: #fff;" placeholder="作品标题" v-model="form.dingyue">
+						<el-form-item label="" class="text-color-8" style="margin-bottom: 0px;" prop="novelName">
+							<el-input style="color: #fff;" placeholder="作品标题" v-model="form.novelName">
 								</el-input>
 						</el-form-item>
 					</div>
-					<div class="border-bottom margin-t10 margin-b10"></div>
+					<div class="border-bottom margin-t10 margin-b20"></div>
 					<div class="form_b" style="margin-top: 10px;">
-						<el-form-item label="" class="text-color-8" style="margin-bottom: 0px;">
-							<el-input  type="textarea" rows="8" resize="none" style="color: #fff;height: 150px;" placeholder="作品简介" v-model="form.dingyue">
+						<el-form-item label="" class="text-color-8" style="margin-bottom: 0px;" prop="summary">
+							<el-input  type="textarea" rows="8" resize="none" style="color: #fff;height: 150px;" placeholder="作品简介" v-model="form.summary">
 								</el-input>
 						</el-form-item>
 					</div>
@@ -101,40 +101,57 @@
 						<span>新章</span>
 					</span>
 				</div>
-				
+
 			</div>
 			<div class="padding-30 juan_list" style="height: 85vh;">
 				<el-aside class="fl" width="40%" style="height: 75vh;overflow: hidden;">
 					<span style="color: #B7B7B7;" class="padding-20">卷引</span>
-					<div class="" style="height: 100%;overflow: auto;margin-right: -17px;margin-top: 10px;">
-						
+					<span style="color: #B7B7B7;" class="padding-20 hover" @click="addJuan"><i class="el-icon-plus"></i>新加卷</span>
+					<div v-if="juan_list.length>0" class="" style="height: 100%;overflow: auto;margin-right: -17px;margin-top: 10px;">
 						<ul class="infinite-list" v-infinite-scroll="load" style="overflow:auto">
 							<li v-for="(item,index) in juan_list" :key="index" class="infinite-list-item">
 								<p class="f16 padding-b10 padding-lr-20 juan-title " :class="{'select-p':index==0}">{{item}}</p>
 							</li>
 						</ul>
 					</div>
+					<div v-if="juan_list.length<=0">
+						<p class="text-center padding-tb-50 text-color-8">暂无分卷</p>
+					</div>
+					
 				</el-aside>
 				<el-aside class="fr" width="60%" style="height: 75vh;">
+					<div v-if="zhang_list.length>0">
+						<p class="juan-title f16" style="color: #1B1B1B;">第一卷</p>
+						<div class="padding-t20 " style="border-bottom:2px solid #F2F2F2"></div>
+						<div class="padding-t20" style="line-height: 28px;">
+							<span>第一章 前言</span>
+							<el-button class="bg2 fr f12" round size="small" style="border: none;color: #fff;padding: 5px 40px;font-size: 12px;">免费</el-button>
+							
+						</div>
+					</div>
+					<div v-if="zhang_list.length<=0">
+						<p class="text-center padding-tb-50 text-color-8">暂无章节</p>
+					</div>
 					<p class="juan-title f16" style="color: #1B1B1B;">第一卷</p>
 					<div class="padding-t20 " style="border-bottom:2px solid #F2F2F2"></div>
 					<div class="padding-t20" style="line-height: 28px;">
 						<span>第一章 前言</span>
 						<el-button class="bg2 fr f12" round size="small" style="border: none;color: #fff;padding: 5px 40px;font-size: 12px;">免费</el-button>
-						
+
 					</div>
 					<div class="padding-t20" style="line-height: 28px;">
 						<span>第一章 前言</span>
 						<el-button class="bg2 fr f12" round size="small" style="border: none;color: #fff;padding: 5px 40px;font-size: 12px;">免费</el-button>
-						
+
 					</div>
 					<div class="padding-t20" style="line-height: 28px;">
 						<span>第一章 前言</span>
 						<el-button class="bg2 fr f12" round size="small" style="border: none;color: #fff;padding: 5px 40px;font-size: 12px;">免费</el-button>
-						
+
 					</div>
+					
 				</el-aside>
-				
+
 			</div>
 		</el-aside>
 	</el-container>
@@ -178,15 +195,20 @@
 		background: #F7F8FC !important;
 		font-family: "iconfont" !important;
 		font-size: 16px;
-		
+
 	}
-	.el-form-item__label,.sel-checkbox__label{
+	.el-form-item__label,.el-checkbox__label{
 		color:#B7B7B7 !important;
+	}
+	.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+		background-color: #8F97A2 !important;
+		border-color:#8F97A2 !important;
 	}
 	.form_r .el-input__inner{
 		background-color: #D1D5D5 !important;
 		border: none !important;
 		border-radius: 8px;
+		color: #fff;
 	}
 	.form_r .el-input__inner::placeholder {
 		color: #fff;
@@ -235,7 +257,7 @@
 	.is-active{
 		color: #1B1B1B !important;
 	}
-	
+
 </style>
 
 <script>
@@ -257,18 +279,22 @@
 		}, {
 			value: '选项2',
 			label: '双皮奶'
-		}], 
+		}],
 		value: '',
 		icon:'\ue605 设定宇宙',
 		icon2:'\ue605　　搜索书名',
 		form:{
-			is_dingyue:0,
-			dingyue:'',
+			summary:'',
+			cover:'',
+			novelName:'',
+			universeId:'',
 		},
 		rules:{
-			name: [
-				{ required: true, message: '请输入活动名称', trigger: 'blur' },
-				{ min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+			novelName: [
+				{ required: true, message: '请输入标题', trigger: 'blur' },
+			],
+			summary: [
+				{ required: true, message: '请输入简介', trigger: 'blur' },
 			],
 		},
 		dialogImageUrl: '',
@@ -276,42 +302,46 @@
 		disabled: false,
 		fits: 'cover',
 		url: '',
-		juan_list:['第一卷','第二卷','第三卷','第四卷','第五卷','第六卷','第七卷','第八卷','第九卷','第十卷','第十一卷','第十二卷'],
-		zhang_list:[
-			{title:'第一卷','child':[{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0}]},
-			{title:'第二卷','child':[{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1}]}
-		],
-		novelId:1,
+		// juan_list:['第一卷','第二卷','第三卷','第四卷','第五卷','第六卷','第七卷','第八卷','第九卷','第十卷','第十一卷','第十二卷'],
+		juan_list:[],
+		// zhang_list:[
+		// 	{title:'第一卷','child':[{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0},{title:'第一章','num':0}]},
+		// 	{title:'第二卷','child':[{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1},{title:'第一章','num':1}]}
+		// ],
+		zhang_list:[],
+		novelId:'',
 		detail:{},
 		circleUrl: "",
 		file_type:'png,jpg,jpeg',
 		anthor:{},
+		universeList:[],
       };
     },
     created:function () {
+		// if(!this.$store.state.login){
+		// 	this.$router.push('/loadpage')
+		// 	this.$message({
+		// 		showClose: true,
+		// 		message: '请先登录',
+		// 		type:'warning',
+		// 	})
+		// 	return false;
+		// }
 		if(this.$router.query){
 			this.novelId=this.$router.query.novelId;
 		}
 		if(this.$router.query){
 			this.anthor=this.$router.query.anthor
 		}
+		this.getUniverseList();
     },
     mounted:function(){
 		this.$store.commit('changeNav', 0)
-		if(!this.novelId){
-			this.$message({
-				showClose: true,
-				message: '参数错误',
-				type:'error'
-			})
-			return false;
-		}else{
-			this.getDetail();
-		}
+		this.getDetail();
     },
 	methods: {
 		handleAvatarSuccess(res, file) {
-			this.url = URL.createObjectURL(file.raw);
+			this.form.cover = URL.createObjectURL(file.raw);
 			this.$refs.upload.clearFiles();
 		},
 		errorHandler() {
@@ -334,8 +364,45 @@
 				this.options = [];
 			}
 		},
-		submitForm(){
-			
+		submitForm(form){
+			if(!this.form.universeId){
+				this.$message({
+					showClose: true,
+					message: '请选择小说宇宙',
+					type:'error',
+				})
+				return false;
+			}
+			if(!this.form.cover){
+				this.$message({
+					showClose: true,
+					message: '请上传封面',
+					type:'error',
+				})
+				return false;
+			}
+			this.$refs[form].validate((valid) => {
+				if (valid) {
+					var url="api/work/novel/create";
+					this.$api.post(url, this.form, response =>{
+						if (response.data.resCode=='0000') {
+							this.$message({
+								showClose: true,
+								message: '创建成功',
+							})
+						} else {
+							this.$message({
+								showClose: true,
+								message: response.data.resMsg,
+								type:'error',
+							})
+						}
+					})
+				}else {
+					// console.log('error submit!!');
+					return false;
+				}
+			});
 		},
 		handleRemove(file, fileList) {
 			console.log(file, fileList);
@@ -353,29 +420,51 @@
 		},
 		getDetail(){
 			var novelId=this.novelId;
-			var url="api/work/novel/query/"+novelId;
-			this.$api.get(url, {}, response =>{
-				console.log(response)
-				if (response.status >= 200 && response.status < 300) {
-					this.log_err = true;
-				} else {
-					this.log_err = true;
-				}
-			})
+			if(novelId){
+				var url="api/work/novel/query/"+novelId;
+				this.$api.get(url, {}, response =>{
+					console.log(response)
+					if (response.status >= 200 && response.status < 300) {
+						this.log_err = true;
+					} else {
+						this.log_err = true;
+					}
+				})
+			}
+			
 		},
 		beforeUpload(file){
 			var testmsg=file.name.substring(file.name.lastIndexOf('.')+1)
 			if(this.file_type.indexOf(testmsg)===-1){
-			  this.$message({
-			            showClose: true,
-			            message: '文件格式不符合要求',
-			            type:'error'
-			          })
-			  this.is_upload=1;
-			  return testmsg;
+				this.$message({
+					showClose: true,
+					message: '文件格式不符合要求',
+					type:'error'
+				})
+				this.is_upload=1;
+				return testmsg;
+			}
+		},
+		getUniverseList(){
+			var url="api/work/universe/all";
+			this.$api.get(url, {}, response =>{
+				if(response.status==200){
+					this.universeList=response.data.resData;
+				}
+			})
+		},
+		//新加卷
+		addJuan(){
+			var novelId=this.novelId;
+			if(!novelId){
+				this.$message({
+					showClose: true,
+					message: '请先创建作品信息',
+					type:'error'
+				})
+				return false;
 			}
 		}
-			
 	}
   };
 </script>

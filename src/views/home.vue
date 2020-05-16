@@ -98,13 +98,16 @@ export default {
             }
           })
         },
-    universe_top_function(novelId) {
-      this.$api.get(`api/main/pub/novel/hot/${novelId}?direction=ASC`, {
+    universe_top_function() {
+
+      this.$api.get(`/api/main/pub/novel/hot`, {
 
       }, response =>{
+        console.log(11,response)
         // eslint-disable-next-line no-empty
         if (response.status >= 200 && response.status < 300) {
-          this.uniBooks_top=response.data.resData.content
+
+          this.uniBooks_top = response.data.resData.content
         }
       })
     },
@@ -121,6 +124,7 @@ export default {
       }
     },
   mounted() {
+    this.universe_top_function(1)
     //在用户看到界面之前执行
     var a = document.getElementById("tablebox");
     var scroll_width = 100; //滚动一下的距离

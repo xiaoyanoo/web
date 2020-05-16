@@ -65,10 +65,10 @@
 					this.anthor=res.data.resData;
 				}else{
 					this.$message({
-					          showClose: true,
-					          message: res.data.resMsg,
-					          type:'error'
-					        })
+							showClose: true,
+							message: res.data.resMsg,
+							type:'error'
+					})
 				}
 			})
 		},
