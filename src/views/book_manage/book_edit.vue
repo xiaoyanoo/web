@@ -134,8 +134,8 @@
 								      <el-dropdown-menu slot="dropdown">
 										<el-dropdown-item  @click.native="edit(item)">编辑</el-dropdown-item>
 										<el-dropdown-item  @click.native="del(item.volumeId)">删除</el-dropdown-item>
-										<el-dropdown-item  @click.native="up(item,index)">上移</el-dropdown-item>
-										<el-dropdown-item  @click.native="down(item,index)">下移</el-dropdown-item>
+										<!-- <el-dropdown-item  @click.native="up(item,index)">上移</el-dropdown-item>
+										<el-dropdown-item  @click.native="down(item,index)">下移</el-dropdown-item> -->
 								        
 								      </el-dropdown-menu>
 								    </el-dropdown>
@@ -692,45 +692,45 @@
 			})
 		},
 		//上移
-		up(item,index){
-			if(this.juan_list[index-1]){
-				var pre_item=this.juan_list[index-1];
-				var pa={};
-				pa.volumeId=item.volumeId;
-				pa.volumeName=pre_item.volumeName;
-				var pa2={};
-				pa2.volumeId=pre_item.volumeId;
-				pa2.volumeName=item.volumeName;
-				this.yidong(pa);
-				this.yidong(pa2,1);
-			}else{
-				this.$message({
-					showClose: true,
-					message: '已经是第一位了',
-					type:'warning',
-				})
-			}
-		},
-		//下移
-		down(item,index){
-			if(this.juan_list[index+1]){
-				var pre_item=this.juan_list[index+1];
-				var pa={};
-				pa.volumeId=item.volumeId;
-				pa.volumeName=pre_item.volumeName;
-				var pa2={};
-				pa2.volumeId=pre_item.volumeId;
-				pa2.volumeName=item.volumeName;
-				this.yidong(pa);
-				this.yidong(pa2,1);
-			}else{
-				this.$message({
-					showClose: true,
-					message: '已经是最后一位了',
-					type:'warning',
-				})
-			}
-		},
+		// up(item,index){
+		// 	if(this.juan_list[index-1]){
+		// 		var pre_item=this.juan_list[index-1];
+		// 		var pa={};
+		// 		pa.volumeId=item.volumeId;
+		// 		pa.volumeName=pre_item.volumeName;
+		// 		var pa2={};
+		// 		pa2.volumeId=pre_item.volumeId;
+		// 		pa2.volumeName=item.volumeName;
+		// 		this.yidong(pa);
+		// 		this.yidong(pa2,1);
+		// 	}else{
+		// 		this.$message({
+		// 			showClose: true,
+		// 			message: '已经是第一位了',
+		// 			type:'warning',
+		// 		})
+		// 	}
+		// },
+		// //下移
+		// down(item,index){
+		// 	if(this.juan_list[index+1]){
+		// 		var pre_item=this.juan_list[index+1];
+		// 		var pa={};
+		// 		pa.volumeId=item.volumeId;
+		// 		pa.volumeName=pre_item.volumeName;
+		// 		var pa2={};
+		// 		pa2.volumeId=pre_item.volumeId;
+		// 		pa2.volumeName=item.volumeName;
+		// 		this.yidong(pa);
+		// 		this.yidong(pa2,1);
+		// 	}else{
+		// 		this.$message({
+		// 			showClose: true,
+		// 			message: '已经是最后一位了',
+		// 			type:'warning',
+		// 		})
+		// 	}
+		// },
 		goWrite(chapterId){
 			this.$router.push({ path: '/write', query: { novelId: this.novelId,volumeId:this.nowVolumeId,chapterId:chapterId} })
 		}
