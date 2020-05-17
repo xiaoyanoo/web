@@ -362,7 +362,7 @@
     },
     created:function () {
 		if(!this.$store.state.login){
-			this.$route.push('/loadpage')
+			this.$router.push('/loadpage')
 			this.$message({
 				showClose: true,
 				message: '请先登录',
