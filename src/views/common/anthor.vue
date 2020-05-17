@@ -11,11 +11,11 @@
 			<p class="text-color-8 padding-tb-10" >作者</p>
 		</div>
 		<div class="text-left" style="margin-top: 30px;">
-			<p class="text-color-10 margin-b20 hover"  style="color: #8F97A2;"><i class="iconfont iconshuji margin-r10"></i>作品</p>
-			<p class="text-color-10 hover" style="color: #8F97A2;"><i class="iconfont iconshoucang margin-r10"></i>收藏</p>
+			<p class="text-color-10 margin-b20 hover"  style="color: #8F97A2;" @click="goZuopin"><i class="iconfont iconshuji margin-r10"></i>作品</p>
+			<p class="text-color-10 hover" style="color: #8F97A2;" @click="goFav"><i class="iconfont iconshoucang margin-r10"></i>收藏</p>
 		</div>
 		<div class="absolute" style="bottom:30px">
-			<p class="text-color-10 margin-b20 hover"  style="color: #8F97A2;"><i class="iconfont iconshezhi margin-r10"></i>设置</p>
+			<p class="text-color-10 margin-b20 hover"  style="color: #8F97A2;" @click="goSet"><i class="iconfont iconshezhi margin-r10"></i>设置</p>
 			<p class="text-color-10 hover"  style="color: #8F97A2;"><i class="iconfont iconicon4 margin-r10"></i>退出</p>
 		</div>
 	</el-aside>
@@ -73,8 +73,16 @@
 			})
 		},
 		goPerson(){
-			console.log(111)
 			this.$router.push('/book_manage/personone')
+		},
+		goZuopin(){
+			
+		},
+		goFav(){
+			this.$router.push('/favorite')
+		},
+		goSet(){
+			
 		}
 			
 	}

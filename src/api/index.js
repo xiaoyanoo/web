@@ -23,7 +23,7 @@ function apiAxios(method, url, params, response) {
     method: method,
     url: url,
     data: method === 'POST' || method === 'PUT' ? params : null,
-    params: method === 'GET' || method === 'DELETE' ? params : null,
+    params: method === 'POST' || method === 'GET' || method === 'DELETE' ? params : null,
   }).then(function (res) {
     response(res);
   }).catch(function (err) {
