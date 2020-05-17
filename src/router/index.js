@@ -12,6 +12,8 @@ import favorite from "../views/favorite";
 import write from "../views/write";
 import book_edit from "@/views/book_manage/book_edit.vue";
 import book_write from "@/views/book_manage/book_write.vue";
+import book_favorite from "@/views/book_manage/book_favorite.vue";
+import book_list from "@/views/book_manage/book_list.vue";
 import applyAuthor from "../views/applyAuthor";
 // import Creatbook from "../views/creatbook";
 // import book_info from "../views/book_info";
@@ -93,5 +95,15 @@ export default new Router({
 			name: 'book_write',
 			component: book_write
 		},
+		{
+			path: '/book_manage/book_favorite',
+			name: 'book_favorite',
+			component: book_favorite
+		},
+		{
+			path: '/book_manage/book_list',
+			name: 'book_list',
+			component: book_list
+		}
     ]
 })
