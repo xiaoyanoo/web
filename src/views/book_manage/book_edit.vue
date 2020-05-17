@@ -133,7 +133,7 @@
 								      </span>
 								      <el-dropdown-menu slot="dropdown">
 										<el-dropdown-item  @click.native="edit(item)">编辑</el-dropdown-item>
-										<el-dropdown-item  @click.native="del(item.volumeId)">删除</el-dropdown-item>
+										<el-dropdown-item  @click.native="del(item)">删除</el-dropdown-item>
 										<!-- <el-dropdown-item  @click.native="up(item,index)">上移</el-dropdown-item>
 										<el-dropdown-item  @click.native="down(item,index)">下移</el-dropdown-item> -->
 								        
@@ -430,16 +430,23 @@
 			}
 			this.$refs[form].validate((valid) => {
 				if (valid) {
-					var url="/api/work/novel/create";
+					var url='';
+					console.log(this.form)
+					if(this.form.novelId){
+						url='/api/work/novel/update';
+					}else{
+						url="/api/work/novel/create";
+					}
 					this.$api.originPost(url, this.form).then(res =>{
 						if (res.data.resCode=='0000') {
-							this.novelId=res.data.resData.novelId;
-							
 							this.$message({
 								showClose: true,
-								message: '创建成功',
+								message: '操作成功',
 							})
-							this.$router.push({ path: '/book_manage/book_edit', query: { novelId: this.novelId} })
+							if(!this.form.novelId){
+								this.novelId=res.data.resData.novelId;
+								this.$router.push({ path: '/book_manage/book_edit', query: { novelId: this.novelId} })
+							}
 						 } else {
 							this.$message({
 								showClose: true,
@@ -673,23 +680,35 @@
 			this.is_juan=true;
 			this.dialogFormVisible=true;
 		},
-		del(volumeId){
-			this.$api.delete('/api/work/novelVolume/'+volumeId, {},res =>{
-				if (res.data.resCode=='0000') {
-					this.$message({
-						showClose: true,
-						message: '操作成功',
-					})
-					this.getJuan();
-					this.dialogFormVisible=false;
-				 } else {
-					this.$message({
-						showClose: true,
-						message: res.data.resMsg,
-						type:'error',
-					})
-				}
-			})
+		del(item){
+			this.$confirm('确定删除分卷：'+item.volumeName+'?', '提示', {
+						confirmButtonText: '确定',
+						cancelButtonText: '取消',
+						type: 'warning'
+					}).then(() => {
+						this.$api.delete('/api/work/novelVolume/'+item.volumeId, {},res =>{
+							if (res.data.resCode=='0000') {
+								this.$message({
+									showClose: true,
+									message: '操作成功',
+								})
+								this.getJuan();
+								this.dialogFormVisible=false;
+							 } else {
+								this.$message({
+									showClose: true,
+									message: res.data.resMsg,
+									type:'error',
+								})
+							}
+						})
+					}).catch(() => {
+						this.$message({
+						type: 'info',
+						message: '已取消操作'
+						});
+			        });
+			
 		},
 		//上移
 		// up(item,index){
@@ -732,7 +751,7 @@
 		// 	}
 		// },
 		goWrite(chapterId){
-			this.$router.push({ path: '/write', query: { novelId: this.novelId,volumeId:this.nowVolumeId,chapterId:chapterId} })
+			this.$router.push({ path: '/book_manage/book_write', query: { novelId: this.novelId,volumeId:this.nowVolumeId,chapterId:chapterId} })
 		}
 	}
   };

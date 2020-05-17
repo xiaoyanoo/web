@@ -11,16 +11,21 @@
       <Col span="4" v-if = "login_comp === false"><router-link to="/loadpage" class="load"><el-button type="primary">登录/注册</el-button></router-link></Col>
       <Col span="4" v-if ="login_comp === true">QAQ欢迎你~{{UserName}}<el-button type="danger" @click="log_off">退出登录</el-button></Col>
     </Row>
-    <router-view></router-view>
+    <router-view  v-if="routerstatus"></router-view>
   </div>
 </template>
 
 <script>
   import {Row, Col} from 'view-design'
   export default {
+	provide(){
+		return {
+			reload:this.reload
+		}
+	},
     data(){
       return{
-
+		routerstatus:true,
       }
     },
     name: 'App',
@@ -56,6 +61,12 @@
               console.log(Error)
             })
       },
+		reload(){
+			this.routerstatus=false;
+				this.$nextTick(()=>{
+				this.routerstatus=true;
+			})
+		}
     },
     computed: {
       nav(){

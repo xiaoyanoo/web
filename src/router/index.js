@@ -11,6 +11,7 @@ import book_info from "../views/book_info";
 import favorite from "../views/favorite";
 import write from "../views/write";
 import book_edit from "@/views/book_manage/book_edit.vue";
+import book_write from "@/views/book_manage/book_write.vue";
 import applyAuthor from "../views/applyAuthor";
 // import Creatbook from "../views/creatbook";
 // import book_info from "../views/book_info";
@@ -87,5 +88,10 @@ export default new Router({
             name: 'applyAuthor',
             component: applyAuthor
         },
+		{
+			path: '/book_manage/book_write',
+			name: 'book_write',
+			component: book_write
+		},
     ]
 })
