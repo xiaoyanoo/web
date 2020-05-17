@@ -61,6 +61,15 @@
       };
     },
     created:function () {
+		if(!this.$store.state.login){
+			this.$route.push('/loadpage')
+			this.$message({
+				showClose: true,
+				message: '请先登录',
+				type:'warning',
+			})
+			return false;
+		}
 		if(this.$router.query){
 			this.novelId=this.$router.query.novelId;
 		}
